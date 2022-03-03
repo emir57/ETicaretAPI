@@ -12,7 +12,7 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddSingleton<IProductService, ProductService>();
+            //services.AddSingleton<,>();
 
             return services;
         }
