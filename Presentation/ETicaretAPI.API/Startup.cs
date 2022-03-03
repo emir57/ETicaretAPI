@@ -1,4 +1,3 @@
-using ETicaretAPI.API.IoC;
 using ETicaretAPI.Persistence.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -22,7 +22,8 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("getall")]
         public IActionResult GetProducts()
         {
-            return Ok();
+            var resut = _productService.GetProducts();
+            return Ok(resut);
         }
     }
 }
