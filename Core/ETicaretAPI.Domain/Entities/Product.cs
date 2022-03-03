@@ -9,12 +9,12 @@ namespace ETicaretAPI.Domain.Entities
     {
         public Product()
         {
-            Orders = new HashSet<Order>();
+            Orders = new List<Order>();
         }
         public string Name { get; set; }
         public int Stock { get; set; }
         public long Price { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }
