@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{0C707FB3-0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretAPI.Domain", "Core\ETicaretAPI.Domain\ETicaretAPI.Domain.csproj", "{DE7DEE31-B9D4-499C-ACE7-B10D5F831A57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretAPI.Application", "ETicaretAPI.Application\ETicaretAPI.Application.csproj", "{C93C71B0-1187-41BF-9C72-96E028295E9E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{963E7AD9-5273-4C78-93EC-C4CABBB27234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaretAPI.Application", "Core\ETicaretAPI.Application\ETicaretAPI.Application.csproj", "{7394B1C0-5BB4-4164-8397-C25C543D74FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,17 +21,17 @@ Global
 		{DE7DEE31-B9D4-499C-ACE7-B10D5F831A57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE7DEE31-B9D4-499C-ACE7-B10D5F831A57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE7DEE31-B9D4-499C-ACE7-B10D5F831A57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C93C71B0-1187-41BF-9C72-96E028295E9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C93C71B0-1187-41BF-9C72-96E028295E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C93C71B0-1187-41BF-9C72-96E028295E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C93C71B0-1187-41BF-9C72-96E028295E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7394B1C0-5BB4-4164-8397-C25C543D74FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7394B1C0-5BB4-4164-8397-C25C543D74FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7394B1C0-5BB4-4164-8397-C25C543D74FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7394B1C0-5BB4-4164-8397-C25C543D74FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DE7DEE31-B9D4-499C-ACE7-B10D5F831A57} = {0C707FB3-083A-47FC-BF4F-9C426BB39B7D}
-		{C93C71B0-1187-41BF-9C72-96E028295E9E} = {0C707FB3-083A-47FC-BF4F-9C426BB39B7D}
+		{7394B1C0-5BB4-4164-8397-C25C543D74FC} = {0C707FB3-083A-47FC-BF4F-9C426BB39B7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {907D5651-8C24-4E89-8095-9C0C18A1D0F6}
