@@ -1,4 +1,4 @@
-﻿using ETicaretAPI.Presentation.Contexts;
+﻿using ETicaretAPI.Persistence.Contexts;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ETicaretAPIDbContext>(options=>options.Use)
+            services.AddDbContext<ETicaretAPIDbContext>(options=>options.u)
             //services.AddSingleton<,>();
 
             return services;
