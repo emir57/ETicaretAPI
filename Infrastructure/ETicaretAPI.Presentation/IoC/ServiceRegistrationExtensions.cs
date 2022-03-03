@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Persistence.IoC
 {
-    public static class IoCExtension
+    public static class ServiceRegistrationExtensions
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
