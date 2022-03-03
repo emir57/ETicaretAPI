@@ -12,7 +12,7 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(""));
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.);
             //services.AddSingleton<,>();
 
             return services;
