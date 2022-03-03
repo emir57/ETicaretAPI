@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ETicaretAPI.Persistence.IoC
 {
@@ -11,7 +12,7 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ETicaretAPIDbContext>(options=>options.u)
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseNpgsql(""));
             //services.AddSingleton<,>();
 
             return services;
