@@ -16,8 +16,10 @@ namespace ETicaretAPI.Persistence.Contexts
         public DbSet<Customer> Customers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().Ignore(x => x.Orders);
-            modelBuilder.Entity<Order>().Ignore(x => x.Products);
+            //modelBuilder.Entity<Product>().Ignore(x => x.Orders);
+            //modelBuilder.Entity<Order>().Ignore(x => x.Products);
+            modelBuilder.Entity<OrderProduct>()
+                .HasKey(x => new { x.ProductId, x.OrderId });
             base.OnModelCreating(modelBuilder);
         }
     }
