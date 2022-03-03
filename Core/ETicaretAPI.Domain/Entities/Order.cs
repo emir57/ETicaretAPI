@@ -7,6 +7,10 @@ namespace ETicaretAPI.Domain.Entities
 {
     public class Order : BaseEntity
     {
+        public Order()
+        {
+            Products = new HashSet<Product>();
+        }
         public Guid CustomerId { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
