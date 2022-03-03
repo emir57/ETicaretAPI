@@ -10,7 +10,7 @@ namespace ETicaretAPI.Persistence.IoC
 {
     public static class IoCExtension
     {
-        public static IServiceCollection UseCustomIoC(this IServiceCollection services)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
             services.AddSingleton<IProductService, ProductService>();
 
