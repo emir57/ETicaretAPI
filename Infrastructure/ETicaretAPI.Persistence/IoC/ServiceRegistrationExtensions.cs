@@ -12,7 +12,7 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.);
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql("Server=myServerAddress;Database=ETicaretAPIDb;Uid=root;Pwd=123456;"));
             //services.AddSingleton<,>();
 
             return services;
