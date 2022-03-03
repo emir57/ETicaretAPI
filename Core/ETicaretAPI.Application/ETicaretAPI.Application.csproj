@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ETicaretAPI.Domain\ETicaretAPI.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
