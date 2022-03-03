@@ -19,7 +19,7 @@ namespace ETicaretAPI.API.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult GetProducts()
         {
             return Ok();
