@@ -17,8 +17,9 @@ namespace ETicaretAPI.Persistence.IoC
             ConfigurationManager configurationManager = new ConfigurationManager();
             configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
             configurationManager.AddJsonFile("appsettings.json");
-            var connectionString = configurationManager.GetConnectionString("MySqlConnection");
-            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(connectionString)); ;
+            services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(
+                configurationManager.GetConnectionString("MySqlConnection")
+                ));
 
             return services;
         }
