@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Persistence.Repositories;
 
 namespace ETicaretAPI.Persistence.IoC
 {
@@ -17,6 +19,14 @@ namespace ETicaretAPI.Persistence.IoC
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(
                 GetConnectionString()
                 ));
+            services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
+            services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
+
+            services.AddScoped<IOrderReadRepository, OrderReadRepository>();
+            services.AddScoped<IOrderWriteRepository, OrderWriteRepository>();
+
+            services.AddScoped<IProductReadRepository, ProductReadRepository>();
+            services.AddScoped<IProductWriteRepository, ProductWriteRepository>();
 
             return services;
         }
