@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Repositories
 {
@@ -11,7 +12,7 @@ namespace ETicaretAPI.Application.Repositories
     {
         IQueryable<T> GetAll();
         IQueryable<T> GetWhere(Expression<Func<T,bool>> filter);
-        T GetSingle(Expression<Func<T, bool>> filter);
-        T GetById(string id);
+        Task<T> GetSingleAsync(Expression<Func<T, bool>> filter);
+        Task<T> GetByIdAsync(string id);
     }
 }
