@@ -47,5 +47,10 @@ namespace ETicaretAPI.API.Controllers
             });
             await _productWriteRepository.SaveAsync();
         }
+        [HttpGet("getall")]
+        public IActionResult GetAll()
+        {
+            return Ok(_productReadRepository.GetAll());
+        }
     }
 }
