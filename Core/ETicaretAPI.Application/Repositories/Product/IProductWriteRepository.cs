@@ -1,6 +1,8 @@
-﻿namespace ETicaretAPI.Application.Repositories
+﻿using ETicaretAPI.Domain.Entities;
+
+namespace ETicaretAPI.Application.Repositories
 {
-    public interface IProductWriteRepository
+    public interface IProductWriteRepository:IWriteRepository<Product>
     {
 
     }
