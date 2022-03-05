@@ -14,14 +14,19 @@ namespace ETicaretAPI.Persistence.IoC
     {
         public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            ConfigurationManager configurationManager = new ConfigurationManager();
-            configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
-            configurationManager.AddJsonFile("appsettings.json");
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(
-                configurationManager.GetConnectionString("MySqlConnection")
+                GetConnectionString()
                 ));
 
             return services;
+        }
+
+        private static string GetConnectionString()
+        {
+            ConfigurationManager configurationManager = new ConfigurationManager();
+            configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
+            configurationManager.AddJsonFile("appsettings.json");
+            return configurationManager.GetConnectionString("MySqlConnection");
         }
     }
 }
