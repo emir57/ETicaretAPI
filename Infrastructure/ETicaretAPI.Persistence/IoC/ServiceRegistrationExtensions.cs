@@ -12,14 +12,12 @@ namespace ETicaretAPI.Persistence.IoC
 {
     public static class ServiceRegistrationExtensions
     {
-        public static IServiceCollection AddPersistenceServices(this IServiceCollection services,IConfiguration configuration)
+        public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
         {
-            ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            
-            //configurationBuilder.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
-            //configurationBuilder.AddJsonFile("appsettings.json");
-
-            var connectionString = ConfigurationExtensions.GetConnectionString(configuration, "MySqlConnection");
+            ConfigurationManager configurationManager = new ConfigurationManager();
+            configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
+            configurationManager.AddJsonFile("appsettings.json");
+            var connectionString = configurationManager.GetConnectionString("MySqlConnection");
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(connectionString)); ;
 
             return services;
