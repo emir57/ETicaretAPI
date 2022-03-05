@@ -4,7 +4,8 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Repositories
 {
-    public interface IWriteRepository
+    public interface IWriteRepository<T> : IRepository<T>
+        where T:class
     {
     }
 }
