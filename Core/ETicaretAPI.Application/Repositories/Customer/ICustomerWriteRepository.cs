@@ -1,4 +1,4 @@
-﻿namespace ETicaretAPI.Application.Repositories.Customer
+﻿namespace ETicaretAPI.Application.Repositories
 {
     public interface ICustomerWriteRepository
     {

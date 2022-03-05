@@ -1,4 +1,4 @@
-﻿namespace ETicaretAPI.Application.Repositories.Order
+﻿namespace ETicaretAPI.Application.Repositories
 {
     public interface IOrderWriteRepository
     {

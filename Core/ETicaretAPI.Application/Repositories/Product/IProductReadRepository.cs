@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ETicaretAPI.Application.Repositories.Product
+namespace ETicaretAPI.Application.Repositories
 {
     public interface IProductReadRepository
     {
