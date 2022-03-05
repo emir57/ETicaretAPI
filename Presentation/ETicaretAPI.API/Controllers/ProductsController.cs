@@ -23,6 +23,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("get")]
         public async Task Get()
         {
+            /*
             await _productWriteRepository.AddRangeAsync(new List<Domain.Entities.Product>
             {
                 new Domain.Entities.Product{
@@ -46,6 +47,7 @@ namespace ETicaretAPI.API.Controllers
                     Price = (long)102.9}
             });
             await _productWriteRepository.SaveAsync();
+            */
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
