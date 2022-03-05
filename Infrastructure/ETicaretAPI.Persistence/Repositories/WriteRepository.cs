@@ -28,17 +28,29 @@ namespace ETicaretAPI.Persistence.Repositories
             return entityEntry.State == EntityState.Added;
         }
 
-        public Task<bool> AddRangeAsync(List<TEntity> model)
+        public async Task<bool> AddRangeAsync(List<TEntity> models)
+        {
+            await Table.AddRangeAsync(models);
+            return true;
+        }
+
+        public bool Remove(TEntity model)
+        {
+            EntityEntry<TEntity> entityEntry = Table.Remove(model);
+            return entityEntry.State == EntityState.Deleted;
+        }
+
+        public bool Remove(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveAsync(TEntity model)
+        public bool RemoveRange(List<TEntity> models)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> RemoveAsync(string id)
+        public Task<int> SaveAsync()
         {
             throw new NotImplementedException();
         }

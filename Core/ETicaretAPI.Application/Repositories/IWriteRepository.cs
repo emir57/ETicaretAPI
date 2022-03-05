@@ -10,9 +10,10 @@ namespace ETicaretAPI.Application.Repositories
         where T:BaseEntity
     {
         Task<bool> AddAsync(T model);
-        Task<bool> AddRangeAsync(List<T> model);
-        Task<bool> RemoveAsync(T model);
-        Task<bool> RemoveAsync(string id);
+        Task<bool> AddRangeAsync(List<T> models);
+        bool Remove(T model);
+        bool RemoveRange(List<T> models);
+        bool Remove(string id);
         Task<bool> UpdateAsync(T model);
 
         Task<int> SaveAsync();
