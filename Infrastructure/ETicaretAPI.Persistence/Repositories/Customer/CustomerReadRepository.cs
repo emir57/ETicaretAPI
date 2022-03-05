@@ -1,5 +1,6 @@
 ﻿using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
+using ETicaretAPI.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,28 +11,10 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Persistence.Repositories
 {
-    public class CustomerReadRepository : ICustomerReadRepository
+    public class CustomerReadRepository : ReadRepository<Customer>, ICustomerReadRepository
     {
-        public DbSet<Customer> Table => throw new NotImplementedException();
-
-        public IQueryable<Customer> GetAll()
+        public CustomerReadRepository(ETicaretAPIDbContext context) : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Customer> GetByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Customer> GetSingleAsync(Expression<Func<Customer, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Customer> GetWhere(Expression<Func<Customer, bool>> filter)
-        {
-            throw new NotImplementedException();
         }
     }
 }
