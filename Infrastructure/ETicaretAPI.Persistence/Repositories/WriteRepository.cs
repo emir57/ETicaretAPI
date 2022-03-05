@@ -40,14 +40,17 @@ namespace ETicaretAPI.Persistence.Repositories
             return entityEntry.State == EntityState.Deleted;
         }
 
-        public bool Remove(string id)
+        public async Task<bool> RemoveAsync(string id)
         {
-            throw new NotImplementedException();
+            TEntity entity = await Table.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id));
+            EntityEntry<TEntity> entityEntry = Table.Remove(entity);
+            return entityEntry.State == EntityState.Deleted;
         }
 
         public bool RemoveRange(List<TEntity> models)
         {
-            throw new NotImplementedException();
+            Table.RemoveRange(models);
+            return true;
         }
 
         public Task<int> SaveAsync()
@@ -55,9 +58,10 @@ namespace ETicaretAPI.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> UpdateAsync(TEntity model)
+        public bool Update(TEntity model)
         {
-            throw new NotImplementedException();
+            EntityEntry<TEntity> entityEntry = Table.Update(model);
+            return entityEntry.State == EntityState.Modified;
         }
     }
 }
