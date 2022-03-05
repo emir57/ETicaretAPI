@@ -2,6 +2,7 @@
 using ETicaretAPI.Domain.Entities.Common;
 using ETicaretAPI.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,9 +22,10 @@ namespace ETicaretAPI.Persistence.Repositories
 
         public DbSet<TEntity> Table => _context.Set<TEntity>();
 
-        public Task<bool> AddAsync(TEntity model)
+        public async Task<bool> AddAsync(TEntity model)
         {
-            
+            EntityEntry<TEntity> entityEntry = await Table.AddAsync(model);
+            return entityEntry.State == EntityState.Added;
         }
 
         public Task<bool> AddRangeAsync(List<TEntity> model)
