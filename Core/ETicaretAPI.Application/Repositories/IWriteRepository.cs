@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ETicaretAPI.Domain.Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 namespace ETicaretAPI.Application.Repositories
 {
     public interface IWriteRepository<T> : IRepository<T>
-        where T:class
+        where T:BaseEntity
     {
         Task<bool> AddAsync(T model);
         Task<bool> AddAsync(List<T> model);
