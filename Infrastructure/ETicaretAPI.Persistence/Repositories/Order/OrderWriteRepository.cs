@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Persistence.Repositories.Order
+namespace ETicaretAPI.Persistence.Repositories
 {
     public class OrderWriteRepository : IOrderWriteRepository
     {

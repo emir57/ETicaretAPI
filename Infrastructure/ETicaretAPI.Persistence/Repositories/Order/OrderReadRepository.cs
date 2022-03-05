@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Persistence.Repositories.Order
+namespace ETicaretAPI.Persistence.Repositories
 {
     public class OrderReadRepository : IOrderReadRepository
     {

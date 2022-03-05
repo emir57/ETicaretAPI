@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Persistence.Repositories.Customer
+namespace ETicaretAPI.Persistence.Repositories
 {
     public class CustomerWriteRepository : ICustomerWriteRepository
     {

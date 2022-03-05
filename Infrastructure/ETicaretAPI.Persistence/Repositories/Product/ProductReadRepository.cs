@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Persistence.Repositories.Product
+namespace ETicaretAPI.Persistence.Repositories
 {
     public class ProductReadRepository : IProductReadRepository
     {
