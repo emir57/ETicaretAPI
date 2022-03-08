@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -48,16 +49,19 @@ namespace ETicaretAPI.API.Controllers
             });
             await _productWriteRepository.SaveAsync();
             */
+            Product p = await _productReadRepository.GetByIdAsync("01e821ad-c6b4-48ac-a41a-6d0c969a62b5",tracking:false);
+            p.Name = "Ahmet 4";
+            await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            return Ok(_productReadRepository.GetAll());
+            return Ok(_productReadRepository.GetAll(tracking:false));
         }
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(string id)
         {
-            return Ok(await _productReadRepository.GetByIdAsync(id));
+            return Ok(await _productReadRepository.GetByIdAsync(id,tracking:false));
         }
     }
 }
