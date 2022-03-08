@@ -26,8 +26,8 @@ namespace ETicaretAPI.Persistence.Repositories
         public IQueryable<TEntity> GetAll()
             => Table;
 
-        public Task<TEntity> GetByIdAsync(string id)
-            => Table.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id));
+        public async Task<TEntity> GetByIdAsync(string id)
+            => await Table.FindAsync(id);
 
         public async Task<TEntity> GetSingleAsync(Expression<Func<TEntity, bool>> filter)
             => await Table.FirstOrDefaultAsync(filter);
