@@ -50,7 +50,7 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
             */
             Product p = await _productReadRepository.GetByIdAsync("01e821ad-c6b4-48ac-a41a-6d0c969a62b5",tracking:false);
-            p.Name = "Ahmet 4";
+            p.Name = "Ahmet 5";
             await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
