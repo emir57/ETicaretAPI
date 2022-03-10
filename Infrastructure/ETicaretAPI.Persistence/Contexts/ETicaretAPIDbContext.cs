@@ -32,7 +32,7 @@ namespace ETicaretAPI.Persistence.Contexts
                 var _ = data.State switch
                 {
                     EntityState.Added => data.Entity.CreatedDate = DateTime.Now,
-                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.Now
+                    EntityState.Modified => data.Entity.UpdatedDate = DateTime.Now,
                 };
 
             }
