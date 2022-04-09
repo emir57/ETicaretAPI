@@ -34,7 +34,8 @@ namespace ETicaretAPI.API
                 {
                     policy.AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowAnyOrigin();
+                        .AllowAnyOrigin()
+                        .WithOrigins("http://localhost:4200");
                 });
             });
         }
