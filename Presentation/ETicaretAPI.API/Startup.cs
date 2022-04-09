@@ -28,6 +28,15 @@ namespace ETicaretAPI.API
         {
             services.AddControllers();
             services.AddPersistenceServices();
+            services.AddCors(options=>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +46,7 @@ namespace ETicaretAPI.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors();
             app.UseHttpsRedirection();
 
             app.UseRouting();
