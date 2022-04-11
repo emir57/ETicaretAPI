@@ -7,10 +7,6 @@ namespace ETicaretAPI.Domain.Entities
 {
     public class Product : BaseEntity
     {
-        public Product()
-        {
-            //Orders = new List<Order>();
-        }
         public string Name { get; set; }
         public int Stock { get; set; }
         public float Price { get; set; }
