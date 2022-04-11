@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ETicaretAPI.API.Controllers
@@ -81,7 +82,7 @@ namespace ETicaretAPI.API.Controllers
                 Price = model.Price
             });
             await _productWriteRepository.SaveAsync();
-            return Ok();
+            return StatusCode((int)HttpStatusCode.Created);
         }
     }
 }
