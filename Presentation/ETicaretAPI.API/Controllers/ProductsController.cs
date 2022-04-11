@@ -84,5 +84,11 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
             return StatusCode((int)HttpStatusCode.Created);
         }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> Put()
+        {
+
+        }
     }
 }
