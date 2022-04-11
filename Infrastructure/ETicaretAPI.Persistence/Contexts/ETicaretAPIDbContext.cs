@@ -33,7 +33,7 @@ namespace ETicaretAPI.Persistence.Contexts
                 {
                     EntityState.Added => data.Entity.CreatedDate = DateTime.Now,
                     EntityState.Modified => data.Entity.UpdatedDate = DateTime.Now,
-                    EntityState.Deleted => DateTime.Now
+                    _ => DateTime.Now
                 };
 
             }
