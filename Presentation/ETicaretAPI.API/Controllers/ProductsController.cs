@@ -93,6 +93,7 @@ namespace ETicaretAPI.API.Controllers
             product.Name = model.Name;
             product.Price = model.Price;
             await _productWriteRepository.SaveAsync();
+            return Ok();
         }
     }
 }
