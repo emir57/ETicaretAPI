@@ -68,5 +68,11 @@ namespace ETicaretAPI.API.Controllers
         {
             return Ok(await _productReadRepository.GetByIdAsync(id,tracking:false));
         }
+
+        [HttpPost("add")]
+        public async Task<IActionResult> Post(Product product)
+        {
+            return Ok();
+        }
     }
 }
