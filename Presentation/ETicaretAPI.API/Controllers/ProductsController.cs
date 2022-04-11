@@ -63,12 +63,12 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            return Ok(_productReadRepository.GetAll(tracking:false));
+            return Ok(_productReadRepository.GetAll(tracking: false));
         }
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(string id)
         {
-            return Ok(await _productReadRepository.GetByIdAsync(id,tracking:false));
+            return Ok(await _productReadRepository.GetByIdAsync(id, tracking: false));
         }
 
         [HttpPost("add")]
@@ -86,8 +86,9 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Put()
+        public async Task<IActionResult> Put(VM_Update_Product model)
         {
+            Product product = await _productReadRepository.GetByIdAsync(model.Id);
 
         }
     }
