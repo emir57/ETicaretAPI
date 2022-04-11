@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Application.ViewModels.Products;
 using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +71,7 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post(Product product)
+        public async Task<IActionResult> Post(VM_Create_Product model)
         {
             return Ok();
         }
