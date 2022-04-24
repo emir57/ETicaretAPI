@@ -21,6 +21,7 @@ namespace ETicaretAPI.Infrastructure.Filters
                         x => x.Value.Errors.Select(x => x.ErrorMessage))
                     .ToArray();
                 context.Result = new BadRequestObjectResult(errors);
+                return;
             }
             await next();
         }

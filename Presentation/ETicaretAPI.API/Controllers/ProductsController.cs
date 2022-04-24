@@ -75,10 +75,6 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("add")]
         public async Task<IActionResult> Post(VM_Create_Product model)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
             //TODO: refactoring
             await _productWriteRepository.AddAsync(new Product
             {
