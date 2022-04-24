@@ -1,3 +1,4 @@
+using ETicaretAPI.Application.Validators.Products;
 using ETicaretAPI.Persistence.IoC;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
@@ -28,7 +29,8 @@ namespace ETicaretAPI.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                .AddFluentValidation();
+                .AddFluentValidation(configuration=>
+                configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
             services.AddPersistenceServices();
             services.AddCors(options=>
             {
