@@ -29,8 +29,9 @@ namespace ETicaretAPI.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers()
-                .AddFluentValidation(configuration=>
-                configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>());
+                .AddFluentValidation(configuration =>
+                configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
+                .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
             services.AddPersistenceServices();
             services.AddCors(options=>
             {
