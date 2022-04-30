@@ -62,7 +62,7 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
-        public IActionResult GetAll(Pagination pagination)
+        public IActionResult GetAll([FromQuery] Pagination pagination)
         {
             return Ok(_productReadRepository.GetAll(tracking: false).Select(x => new
             {
