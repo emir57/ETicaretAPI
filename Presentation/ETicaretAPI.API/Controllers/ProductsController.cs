@@ -64,6 +64,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll([FromQuery] Pagination pagination)
         {
+            var totalCount = _productReadRepository.GetAll(tracking: false).Count();
             var products = _productReadRepository.GetAll(tracking: false).Select(x => new
             {
                 x.Id,
@@ -73,7 +74,11 @@ namespace ETicaretAPI.API.Controllers
                 x.CreatedDate,
                 x.UpdatedDate
             }).Take(pagination.Size).Skip(pagination.Page * pagination.Size).ToList();
-            return Ok(products);
+            return Ok(new
+            {
+                totalCount,
+                products
+            });
         }
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(string id)
