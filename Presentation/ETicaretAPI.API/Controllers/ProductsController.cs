@@ -62,8 +62,9 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
-        public IActionResult GetAll([FromQuery] Pagination pagination)
+        public async Task<IActionResult> GetAll([FromQuery] Pagination pagination)
         {
+            await Task.Delay(1000);
             var totalCount = _productReadRepository.GetAll(tracking: false).Count();
             var products = _productReadRepository.GetAll(tracking: false).Select(x => new
             {
