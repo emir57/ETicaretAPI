@@ -63,7 +63,15 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            return Ok(_productReadRepository.GetAll(tracking: false));
+            return Ok(_productReadRepository.GetAll(tracking: false).Select(x => new
+            {
+                x.Id,
+                x.Name,
+                x.Stock,
+                x.Price,
+                x.CreatedDate,
+                x.UpdatedDate
+            }));
         }
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(string id)
