@@ -72,7 +72,7 @@ namespace ETicaretAPI.API.Controllers
                 x.Price,
                 x.CreatedDate,
                 x.UpdatedDate
-            }).Take(pagination.Page * pagination.Size).Skip(pagination.Size).ToList();
+            }).Take(pagination.Size).Skip(pagination.Page * pagination.Size).ToList();
             return Ok(products);
         }
         [HttpGet("getbyid")]
