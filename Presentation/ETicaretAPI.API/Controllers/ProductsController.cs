@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Application.RequestParameters;
 using ETicaretAPI.Application.ViewModels.Products;
 using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Http;
@@ -61,7 +62,7 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
-        public IActionResult GetAll()
+        public IActionResult GetAll(Pagination pagination)
         {
             return Ok(_productReadRepository.GetAll(tracking: false).Select(x => new
             {
