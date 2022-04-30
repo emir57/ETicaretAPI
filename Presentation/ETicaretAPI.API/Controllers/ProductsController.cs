@@ -73,7 +73,7 @@ namespace ETicaretAPI.API.Controllers
                 x.Price,
                 x.CreatedDate,
                 x.UpdatedDate
-            }).Take(pagination.Size).Skip(pagination.Page * pagination.Size).ToList();
+            }).Skip(pagination.Page * pagination.Size).Take(pagination.Size).ToList();
             return Ok(new
             {
                 totalCount,
