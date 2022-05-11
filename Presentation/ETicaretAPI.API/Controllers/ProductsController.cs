@@ -127,7 +127,7 @@ namespace ETicaretAPI.API.Controllers
                     message = "Silme işlemi başarılı."
                 });
         }
-        [HttpPost("uplaod")]
+        [HttpPost("upload")]
         public async Task<IActionResult> Upload()
         {
             string uploadPath = Path.Combine(
