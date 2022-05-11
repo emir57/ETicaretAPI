@@ -146,8 +146,8 @@ namespace ETicaretAPI.API.Controllers
                         1024 * 1024, useAsync: false);
                 await fileStream.CopyToAsync(fileStream);
                 await fileStream.FlushAsync();
-                return Ok();
             }
+            return Ok();
         }
     }
 }
