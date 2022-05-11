@@ -123,5 +123,10 @@ namespace ETicaretAPI.API.Controllers
                     message = "Silme işlemi başarılı."
                 });
         }
+        [HttpPost("uplaod")]
+        public async Task<IActionResult> Upload()
+        {
+
+        }
     }
 }
