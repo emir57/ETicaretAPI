@@ -133,6 +133,20 @@ namespace ETicaretAPI.API.Controllers
             string uploadPath = Path.Combine(
                 _webHostEnvironment.WebRootPath,
                 "resource/product-images");
+            Random r = new Random();
+            foreach (IFormFile file in Request.Form.Files)
+            {
+                string fullPath = Path.Combine(
+                    uploadPath,
+                    $"{r.NextDouble()}.{Path.GetExtension(file.FileName)}");
+                using FileStream fileStream = new FileStream(fullPath,
+                        FileMode.Create,
+                        FileAccess.Write,
+                        FileShare.None,
+                        1024 * 1024, useAsync: false);
+                await fileStream.CopyToAsync(fileStream);
+                await fileStream.FlushAsync();
+            }
         }
     }
 }
