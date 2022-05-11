@@ -136,18 +136,18 @@ namespace ETicaretAPI.API.Controllers
             if (!Directory.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
             Random r = new Random();
+
             foreach (IFormFile file in Request.Form.Files)
             {
                 string fullPath = Path.Combine(
                     uploadPath,
                     $"{r.Next(0, 999999)}{Path.GetExtension(file.FileName)}");
-                using FileStream fileStream = new FileStream(fullPath,
-                        FileMode.Create,
-                        FileAccess.Write,
-                        FileShare.None,
-                        1024 * 1024, useAsync: false);
-                await fileStream.CopyToAsync(fileStream);
-                await fileStream.FlushAsync();
+                using (FileStream fileStream = new FileStream(fullPath,
+                        FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                    await fileStream.FlushAsync();
+                }
             }
             return Ok();
         }
