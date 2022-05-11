@@ -130,7 +130,9 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("uplaod")]
         public async Task<IActionResult> Upload()
         {
-            string uploadPath = Path.Combine("",);
+            string uploadPath = Path.Combine(
+                _webHostEnvironment.WebRootPath,
+                "resource/product-images");
         }
     }
 }
