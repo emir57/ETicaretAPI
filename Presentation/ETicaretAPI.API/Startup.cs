@@ -53,6 +53,7 @@ namespace ETicaretAPI.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseStaticFiles();
             app.UseCors();
             app.UseHttpsRedirection();
 
