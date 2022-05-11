@@ -138,7 +138,7 @@ namespace ETicaretAPI.API.Controllers
             {
                 string fullPath = Path.Combine(
                     uploadPath,
-                    $"{r.NextDouble()}.{Path.GetExtension(file.FileName)}");
+                    $"{r.NextDouble()}{Path.GetExtension(file.FileName)}");
                 using FileStream fileStream = new FileStream(fullPath,
                         FileMode.Create,
                         FileAccess.Write,
