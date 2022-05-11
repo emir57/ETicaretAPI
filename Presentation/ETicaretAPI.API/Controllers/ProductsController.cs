@@ -2,10 +2,12 @@
 using ETicaretAPI.Application.RequestParameters;
 using ETicaretAPI.Application.ViewModels.Products;
 using ETicaretAPI.Domain.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -18,11 +20,13 @@ namespace ETicaretAPI.API.Controllers
     {
         private readonly IProductWriteRepository _productWriteRepository;
         private readonly IProductReadRepository _productReadRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
+        public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, IWebHostEnvironment webHostEnvironment)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
         [HttpGet("get")]
         public async Task Get()
@@ -126,7 +130,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("uplaod")]
         public async Task<IActionResult> Upload()
         {
-
+            string uploadPath = Path.Combine("",);
         }
     }
 }
