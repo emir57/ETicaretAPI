@@ -133,12 +133,14 @@ namespace ETicaretAPI.API.Controllers
             string uploadPath = Path.Combine(
                 _webHostEnvironment.WebRootPath,
                 "resource/product-images");
+            if (!Directory.Exists(uploadPath))
+                Directory.CreateDirectory(uploadPath);
             Random r = new Random();
             foreach (IFormFile file in Request.Form.Files)
             {
                 string fullPath = Path.Combine(
                     uploadPath,
-                    $"{r.NextDouble()}{Path.GetExtension(file.FileName)}");
+                    $"{r.Next(0, 999999)}{Path.GetExtension(file.FileName)}");
                 using FileStream fileStream = new FileStream(fullPath,
                         FileMode.Create,
                         FileAccess.Write,
