@@ -35,9 +35,12 @@ namespace ETicaretAPI.Infrastructure.Services
             }
         }
 
-        private Task<string> FileRenameAsync(string fileName)
+        private Task<string> FileRenameAsync(string path, string fileName)
         {
-            string newFileName = NameOperation.CharacterRegulatory(fileName);
+            string extension = Path.GetExtension(fileName);
+            string oldName = Path.GetFileNameWithoutExtension(fileName);
+            string newFileName = $"{NameOperation.CharacterRegulatory(oldName)}{extension}";
+            
         }
 
         public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
