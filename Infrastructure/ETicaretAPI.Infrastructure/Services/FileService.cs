@@ -10,7 +10,17 @@ namespace ETicaretAPI.Infrastructure.Services
 {
     public class FileService : IFileService
     {
-        public Task UploadAsync(string path, IFormFileCollection formFiles)
+        public Task<bool> CopyFileAsync(string path, IFormFile file)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<string> FileRenameAsync(string fileName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task UploadAsync(string path, IFormFileCollection formFiles)
         {
             string uploadPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
@@ -20,7 +30,8 @@ namespace ETicaretAPI.Infrastructure.Services
 
             foreach (IFormFile file in formFiles)
             {
-
+                string fileNewName = await FileRenameAsync(file.FileName);
+                bool isUpload = await CopyFileAsync(Path.Combine(uploadPath, fileNewName), file);
             }
         }
     }
