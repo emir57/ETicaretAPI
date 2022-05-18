@@ -65,7 +65,7 @@ namespace ETicaretAPI.Infrastructure.Services
             List<bool> results = new List<bool>();
             foreach (IFormFile file in formFiles)
             {
-                string fileNewName = await FileRenameAsync(file.FileName);
+                string fileNewName = await FileRenameAsync(uploadPath,file.FileName);
                 bool result = await CopyFileAsync(Path.Combine(uploadPath, fileNewName), file);
                 datas.Add((fileNewName, Path.Combine(uploadPath, fileNewName)));
                 results.Add(result);
