@@ -14,7 +14,7 @@ namespace ETicaretAPI.Infrastructure.Services
         {
             string uploadPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
-                "resource/product-images");
+                path);
         }
     }
 }
