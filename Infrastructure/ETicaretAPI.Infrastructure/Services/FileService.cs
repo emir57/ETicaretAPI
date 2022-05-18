@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Services;
+using ETicaretAPI.Infrastructure.Operations;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace ETicaretAPI.Infrastructure.Services
 
         public Task<string> FileRenameAsync(string fileName)
         {
-            throw new NotImplementedException();
+            string newFileName = NameOperation.CharacterRegulatory(fileName);
         }
 
         public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
@@ -47,7 +48,7 @@ namespace ETicaretAPI.Infrastructure.Services
             if (!File.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
 
-            List<(string fileName, string path)> datas = 
+            List<(string fileName, string path)> datas =
                 new List<(string fileName, string path)>();
             List<bool> results = new List<bool>();
             foreach (IFormFile file in formFiles)
