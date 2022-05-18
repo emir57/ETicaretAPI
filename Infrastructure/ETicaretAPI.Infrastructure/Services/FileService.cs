@@ -26,7 +26,7 @@ namespace ETicaretAPI.Infrastructure.Services
                     await fileStream.FlushAsync();
                     return true;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     //TODO: log
                     throw e;
@@ -47,11 +47,21 @@ namespace ETicaretAPI.Infrastructure.Services
             if (!File.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
 
+            List<(string fileName, string path)> datas = 
+                new List<(string fileName, string path)>();
+            List<bool> results = new List<bool>();
             foreach (IFormFile file in formFiles)
             {
                 string fileNewName = await FileRenameAsync(file.FileName);
-                bool isUpload = await CopyFileAsync(Path.Combine(uploadPath, fileNewName), file);
+                bool result = await CopyFileAsync(Path.Combine(uploadPath, fileNewName), file);
+                datas.Add((fileNewName, Path.Combine(uploadPath, fileNewName)));
+                results.Add(result);
             }
+            if (results.TrueForAll(r => r.Equals(true)))
+                return datas;
+            return null;
+
+            //TODO: if the result is wrong create custom exception
         }
     }
 }
