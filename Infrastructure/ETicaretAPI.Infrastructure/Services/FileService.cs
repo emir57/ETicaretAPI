@@ -26,9 +26,10 @@ namespace ETicaretAPI.Infrastructure.Services
                     await fileStream.FlushAsync();
                     return true;
                 }
-                catch
+                catch(Exception e)
                 {
-                    return false;
+                    //TODO: log
+                    throw e;
                 }
             }
         }
