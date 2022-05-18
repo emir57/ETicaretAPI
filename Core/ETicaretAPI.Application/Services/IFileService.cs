@@ -6,5 +6,6 @@ namespace ETicaretAPI.Application.Services
     public interface IFileService
     {
         Task UploadAsync(string path, IFormFileCollection formFiles);
+        Task<string> FileRenameAsync(string fileName);
     }
 }

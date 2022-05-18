@@ -17,6 +17,11 @@ namespace ETicaretAPI.Infrastructure.Services
                 path);
             if (!File.Exists(uploadPath))
                 Directory.CreateDirectory(uploadPath);
+
+            foreach (IFormFile file in formFiles)
+            {
+
+            }
         }
     }
 }
