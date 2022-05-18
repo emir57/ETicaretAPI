@@ -10,9 +10,27 @@ namespace ETicaretAPI.Infrastructure.Services
 {
     public class FileService : IFileService
     {
-        public Task<bool> CopyFileAsync(string path, IFormFile file)
+        public async Task<bool> CopyFileAsync(string path, IFormFile file)
         {
-            throw new NotImplementedException();
+            await using (FileStream fileStream = new FileStream(
+                path,
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.None,
+                1024 * 1024,
+                useAsync: false))
+            {
+                try
+                {
+                    await file.CopyToAsync(fileStream);
+                    await fileStream.FlushAsync();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
 
         public Task<string> FileRenameAsync(string fileName)
