@@ -35,7 +35,7 @@ namespace ETicaretAPI.Infrastructure.Services
             }
         }
 
-        public Task<string> FileRenameAsync(string fileName)
+        private Task<string> FileRenameAsync(string fileName)
         {
             string newFileName = NameOperation.CharacterRegulatory(fileName);
         }
