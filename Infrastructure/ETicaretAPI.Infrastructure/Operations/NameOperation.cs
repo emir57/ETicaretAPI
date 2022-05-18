@@ -8,9 +8,10 @@ namespace ETicaretAPI.Infrastructure.Operations
     {
         public static string CharacterRegulatory(string name)
         =>
-            name.Replace("\"", "")
+            name.Trim().Replace("\"", "")
                 .Replace("!", "")
                 .Replace("'", "")
+                .Replace(" ", "-")
                 .Replace(".", "-")
                 .Replace(",", "")
                 .Replace("?", "")
@@ -52,7 +53,6 @@ namespace ETicaretAPI.Infrastructure.Operations
                 .Replace("Ç", "C")
                 .Replace("Ö", "O")
                 .Replace("æ", "a")
-                .Replace("ß", "b")
-                .Replace("", "b");
+                .Replace("ß", "b");
     }
 }

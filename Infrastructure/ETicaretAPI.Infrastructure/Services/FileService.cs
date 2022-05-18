@@ -46,6 +46,7 @@ namespace ETicaretAPI.Infrastructure.Services
                 if (File.Exists($"{path}\\{newFileName}"))
                     await FileRenameAsync(path, newFileName);
             });
+            return "";
         }
 
         public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
