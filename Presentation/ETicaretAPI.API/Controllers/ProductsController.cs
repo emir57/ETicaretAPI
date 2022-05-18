@@ -133,7 +133,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload()
         {
-            await _fileService.UploadAsync("product-images", Request.Form.Files);
+            await _fileService.UploadAsync("resources/product-images", Request.Form.Files);
             return Ok();
         }
     }
