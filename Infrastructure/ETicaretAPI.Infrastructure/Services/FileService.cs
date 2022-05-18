@@ -45,7 +45,7 @@ namespace ETicaretAPI.Infrastructure.Services
 
                 if (File.Exists($"{path}\\{newFileName}"))
                 {
-                    return await FileRenameAsync(path, $"{newFileName.Split($"-{num}")[0]}{extension}", num++);
+                    return await FileRenameAsync(path, $"{newFileName.Split($"-{num}")[0]}{extension}", ++num);
                 }
                 return newFileName;
             });
