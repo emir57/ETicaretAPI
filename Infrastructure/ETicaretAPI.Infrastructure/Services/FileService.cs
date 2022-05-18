@@ -15,6 +15,8 @@ namespace ETicaretAPI.Infrastructure.Services
             string uploadPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
                 path);
+            if (!File.Exists(uploadPath))
+                Directory.CreateDirectory(uploadPath);
         }
     }
 }
