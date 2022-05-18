@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,9 @@ namespace ETicaretAPI.Infrastructure.Services
     {
         public Task UploadAsync(string path, IFormFileCollection formFiles)
         {
-            throw new NotImplementedException();
+            string uploadPath = Path.Combine(
+                Directory.GetCurrentDirectory(), "wwwroot",
+                "resource/product-images");
         }
     }
 }
