@@ -9,7 +9,7 @@ namespace ETicaretAPI.Infrastructure
 {
     public static class ServiceRegistration
     {
-        public static void AddInfrastructureService(
+        public static void AddInfrastructureServices(
             this IServiceCollection services)
         {
             services.AddScoped<IFileService, FileService>();
