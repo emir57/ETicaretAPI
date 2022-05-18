@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ETicaretAPI.Infrastructure.StaticServices
+namespace ETicaretAPI.Infrastructure.Operations
 {
-    public static class NameService
+    public static class NameOperation
     {
         public static string CharacterRegulatory(string name)
         =>
