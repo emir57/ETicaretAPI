@@ -39,7 +39,7 @@ namespace ETicaretAPI.Infrastructure.Services
             throw new NotImplementedException();
         }
 
-        public async Task UploadAsync(string path, IFormFileCollection formFiles)
+        public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
         {
             string uploadPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
