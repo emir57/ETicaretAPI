@@ -37,7 +37,7 @@ namespace ETicaretAPI.Infrastructure.Services
 
         private async Task<string> FileRenameAsync(string path, string fileName, int num = 1)
         {
-            string lastName = await Task.Run(async () =>
+            return await Task.Run(async () =>
             {
                 string extension = Path.GetExtension(fileName);
                 string oldName = $"{Path.GetFileNameWithoutExtension(fileName)}-{num}";
@@ -49,7 +49,6 @@ namespace ETicaretAPI.Infrastructure.Services
                 }
                 return newFileName;
             });
-            return lastName;
         }
 
         public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
