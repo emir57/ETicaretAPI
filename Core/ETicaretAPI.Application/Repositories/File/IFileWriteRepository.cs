@@ -1,11 +1,11 @@
-﻿using ETicaretAPI.Domain.Entities;
+﻿using F = ETicaretAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ETicaretAPI.Application.Repositories
 {
-    public interface IFileWriteRepository : IWriteRepository<Domain.Entities.File>
+    public interface IFileWriteRepository : IWriteRepository<F.File>
     {
     }
 }
