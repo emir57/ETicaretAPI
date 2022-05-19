@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using F = ETicaretAPI.Domain.Entities;
 
-namespace ETicaretAPI.Persistence.Repositories.File
+namespace ETicaretAPI.Persistence.Repositories
 {
     public class FileReadRepository : ReadRepository<F.File>, IFileReadRepository
     {
