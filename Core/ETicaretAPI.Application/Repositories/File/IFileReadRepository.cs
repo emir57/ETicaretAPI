@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Repositories
 {
-    public interface IFileReadRepository : IReadRepository<File>
+    public interface IFileReadRepository : IReadRepository<Domain.Entities.File>
     {
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Repositories
 {
-    public interface IFileWriteRepository : IWriteRepository<File>
+    public interface IFileWriteRepository : IWriteRepository<Domain.Entities.File>
     {
     }
 }
