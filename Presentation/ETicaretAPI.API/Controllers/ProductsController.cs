@@ -151,6 +151,7 @@ namespace ETicaretAPI.API.Controllers
                 FileName = d.fileName,
                 Path = d.path
             }).ToList());
+            await _productImageFileWriteRepository.SaveAsync();
             return Ok();
         }
     }
