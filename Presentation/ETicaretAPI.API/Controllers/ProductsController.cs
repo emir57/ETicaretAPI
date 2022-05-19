@@ -146,10 +146,11 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Upload()
         {
             var datas = await _fileService.UploadAsync("resources/product-images", Request.Form.Files);
-            _productImageFileWriteRepository.AddAsync(new ProductImageFile
+            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile
             {
-                
-            })
+                FileName = d.fileName,
+                Path = d.path
+            }).ToList());
             return Ok();
         }
     }
