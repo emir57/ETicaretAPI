@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ETicaretAPI.Domain.Entities
 {
-    public class ProductImage : File
+    public class ProductImageFile : File
     {
     }
 }
