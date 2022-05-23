@@ -21,9 +21,7 @@ namespace ETicaretAPI.Infrastructure.Services.Local
         }
 
         public bool HasFile(string path, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+            => File.Exists($"{path}\\{fileName}");
 
         private async Task<bool> CopyFileAsync(string path, IFormFile file)
         {
