@@ -1,5 +1,6 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
 using ETicaretAPI.Application.Services;
+using ETicaretAPI.Infrastructure.Enums;
 using ETicaretAPI.Infrastructure.Services;
 using ETicaretAPI.Infrastructure.Services.Storage;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,10 @@ namespace ETicaretAPI.Infrastructure
         }
         public static void AddStorage<T>(this IServiceCollection services)
             where T : class, IStorage
+        {
+            services.AddScoped<IStorage, T>();
+        }
+        public static void AddStorage(this IServiceCollection services,StorageType storageType)
         {
             services.AddScoped<IStorage, T>();
         }
