@@ -152,7 +152,8 @@ namespace ETicaretAPI.API.Controllers
             await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile
             {
                 FileName = d.fileName,
-                Path = d.pathOrContainerName
+                Path = d.pathOrContainerName,
+                Storage = "Local"
             }).ToList());
             await _productImageFileWriteRepository.SaveAsync();
             return Ok();
