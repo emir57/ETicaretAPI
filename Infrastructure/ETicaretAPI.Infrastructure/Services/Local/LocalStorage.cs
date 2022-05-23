@@ -25,6 +25,30 @@ namespace ETicaretAPI.Infrastructure.Services.Local
             throw new NotImplementedException();
         }
 
+        private async Task<bool> CopyFileAsync(string path, IFormFile file)
+        {
+            await using (FileStream fileStream = new FileStream(
+                path,
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.None,
+                1024 * 1024,
+                useAsync: false))
+            {
+                try
+                {
+                    await file.CopyToAsync(fileStream);
+                    await fileStream.FlushAsync();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    //TODO: log
+                    throw e;
+                }
+            }
+        }
+
         public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
         {
             string uploadPath = Path.Combine(
