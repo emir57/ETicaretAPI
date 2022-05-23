@@ -15,10 +15,8 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
             _storage = storage;
         }
 
-        public Task DeleteAsync(string pathOrContainerName, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteAsync(string pathOrContainerName, string fileName)
+            => await _storage.DeleteAsync(pathOrContainerName, fileName);
 
         public List<string> GetFiles(string pathOrContainerName)
         {
