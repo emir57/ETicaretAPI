@@ -38,12 +38,9 @@ namespace ETicaretAPI.Infrastructure.Services.Local
             List<bool> results = new List<bool>();
             foreach (IFormFile file in formFiles)
             {
-                bool result = await CopyFileAsync(Path.Combine(uploadPath, fileNewName), file);
-                datas.Add((fileNewName, Path.Combine(path, fileNewName)));
-                results.Add(result);
+                await CopyFileAsync(Path.Combine(uploadPath, file.Name), file);
+                datas.Add((file.Name, Path.Combine(path, file.Name)));
             }
-            if (results.TrueForAll(r => r.Equals(true)))
-                return datas;
             return null;
         }
     }
