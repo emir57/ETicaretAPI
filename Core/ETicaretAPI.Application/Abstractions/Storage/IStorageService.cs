@@ -6,6 +6,6 @@ namespace ETicaretAPI.Application.Abstractions.Storage
 {
     public interface IStorageService : IStorage
     {
-        string StorageName { get; set; }
+        string StorageName { get;}
     }
 }
