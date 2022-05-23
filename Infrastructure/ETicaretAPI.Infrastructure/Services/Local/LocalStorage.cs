@@ -10,10 +10,8 @@ namespace ETicaretAPI.Infrastructure.Services.Local
 {
     public class LocalStorage : ILocalStorage
     {
-        public Task DeleteAsync(string path, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteAsync(string path, string fileName)
+            => await Task.Run(() => { File.Delete($"{path}\\{fileName}"); });
 
         public List<string> GetFiles(string path)
         {
