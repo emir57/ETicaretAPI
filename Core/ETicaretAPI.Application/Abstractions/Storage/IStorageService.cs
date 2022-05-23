@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Abstractions.Storage
 {
-    interface IStorageService
+    public interface IStorageService : IStorage
     {
     }
 }
