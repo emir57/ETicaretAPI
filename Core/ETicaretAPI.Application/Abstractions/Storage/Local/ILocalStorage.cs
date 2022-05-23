@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Abstractions.Storage.Local
 {
-    public interface ILocalStorage
+    public interface ILocalStorage : IStorage
     {
     }
 }
