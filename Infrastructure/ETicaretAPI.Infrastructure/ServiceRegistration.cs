@@ -16,5 +16,10 @@ namespace ETicaretAPI.Infrastructure
         {
             services.AddScoped<IStorageService, StorageService>();
         }
+        public static void AddStorage<T>(this IServiceCollection services)
+            where T : class, IStorageService
+        {
+            services.AddScoped<IStorage, T>();
+        }
     }
 }
