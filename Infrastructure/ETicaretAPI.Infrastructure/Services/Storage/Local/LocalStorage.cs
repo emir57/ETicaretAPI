@@ -62,7 +62,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
                 await CopyFileAsync(Path.Combine(uploadPath, file.Name), file);
                 datas.Add((file.Name, Path.Combine(path, file.Name)));
             }
-            return null;
+            return datas;
         }
     }
 }
