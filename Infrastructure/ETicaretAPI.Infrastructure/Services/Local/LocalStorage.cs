@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,8 @@ namespace ETicaretAPI.Infrastructure.Services.Local
 
         public List<string> GetFiles(string path)
         {
-            throw new NotImplementedException();
+            DirectoryInfo directory = new DirectoryInfo(path);
+            return directory.GetFiles().Select(f => f.Name).ToList();
         }
 
         public bool HasFile(string path, string fileName)
