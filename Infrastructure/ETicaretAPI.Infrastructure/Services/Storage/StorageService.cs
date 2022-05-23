@@ -22,9 +22,7 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
             => _storage.GetFiles(pathOrContainerName);
 
         public bool HasFile(string pathOrContainerName, string fileName)
-        {
-            throw new NotImplementedException();
-        }
+            => _storage.HasFile(pathOrContainerName, fileName);
 
         public Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string pathOrContainerName, IFormFileCollection formFiles)
         {
