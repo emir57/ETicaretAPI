@@ -49,7 +49,7 @@ namespace ETicaretAPI.Infrastructure.Services.Local
             }
         }
 
-        public async Task<List<(string fileName, string path)>> UploadAsync(string path, IFormFileCollection formFiles)
+        public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string path, IFormFileCollection formFiles)
         {
             string uploadPath = Path.Combine(
                 Directory.GetCurrentDirectory(), "wwwroot",
@@ -59,7 +59,6 @@ namespace ETicaretAPI.Infrastructure.Services.Local
 
             List<(string fileName, string path)> datas =
                 new List<(string fileName, string path)>();
-            List<bool> results = new List<bool>();
             foreach (IFormFile file in formFiles)
             {
                 await CopyFileAsync(Path.Combine(uploadPath, file.Name), file);
