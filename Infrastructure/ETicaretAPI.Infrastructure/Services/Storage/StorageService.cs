@@ -9,6 +9,12 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
 {
     public class StorageService : IStorageService
     {
+        private readonly IStorage _storage;
+        public StorageService(IStorage storage)
+        {
+            _storage = storage;
+        }
+
         public Task DeleteAsync(string pathOrContainerName, string fileName)
         {
             throw new NotImplementedException();
