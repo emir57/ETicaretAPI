@@ -38,6 +38,8 @@ namespace ETicaretAPI.API
             services.AddPersistenceServices();
             services.AddInfrastructureServices();
 
+            //services.AddStorage(StorageType.Azure);
+
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(policy =>
