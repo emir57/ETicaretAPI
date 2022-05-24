@@ -59,8 +59,9 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Local
                 new List<(string fileName, string path)>();
             foreach (IFormFile file in formFiles)
             {
-                await CopyFileAsync(Path.Combine(uploadPath, file.Name), file);
-                datas.Add((file.Name, Path.Combine(path, file.Name)));
+                string newFileName = await FileRenameAsync(uploadPath, file.Name, HasFile);
+                await CopyFileAsync(Path.Combine(uploadPath, newFileName), file);
+                datas.Add((file.Name, Path.Combine(path, newFileName)));
             }
             return datas;
         }
