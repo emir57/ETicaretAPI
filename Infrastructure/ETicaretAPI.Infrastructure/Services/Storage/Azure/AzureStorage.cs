@@ -35,7 +35,8 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
 
         public bool HasFile(string containerName, string fileName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Any(f => f.Name == fileName);
         }
 
         public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection formFiles)
