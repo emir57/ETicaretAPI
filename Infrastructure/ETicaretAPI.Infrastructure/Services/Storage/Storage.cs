@@ -9,7 +9,8 @@ namespace ETicaretAPI.Infrastructure.Services.Storage
 {
     public class Storage
     {
-        protected async Task<string> FileRenameAsync(string path, string fileName, int num = 1)
+        protected delegate bool HasFile(string pathOrContainerName, string filePath);
+        protected async Task<string> FileRenameAsync(string path, string fileName, HasFile hasFileMethod, int num = 1)
         {
             return await Task.Run(async () =>
             {
