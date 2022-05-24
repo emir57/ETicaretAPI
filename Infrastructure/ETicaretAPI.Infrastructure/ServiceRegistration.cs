@@ -26,6 +26,7 @@ namespace ETicaretAPI.Infrastructure
         }
         public static void AddStorage(this IServiceCollection services, StorageType storageType)
         {
+            //bad code
             switch (storageType)
             {
                 case StorageType.Local:
