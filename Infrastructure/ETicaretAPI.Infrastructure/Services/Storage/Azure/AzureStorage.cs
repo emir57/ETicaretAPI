@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,7 +29,8 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
 
         public List<string> GetFiles(string containerName)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            return _blobContainerClient.GetBlobs().Select(f => f.Name).ToList();
         }
 
         public bool HasFile(string containerName, string fileName)
