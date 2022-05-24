@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
 {
-    public class AzureStorage : IAzureStorage
+    public class AzureStorage : Storage, IAzureStorage
     {
         private readonly BlobServiceClient _blobServiceClient;
         BlobContainerClient _blobContainerClient;

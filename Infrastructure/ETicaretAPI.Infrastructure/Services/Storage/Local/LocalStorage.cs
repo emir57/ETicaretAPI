@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Infrastructure.Services.Storage.Local
 {
-    public class LocalStorage : ILocalStorage
+    public class LocalStorage : Storage, ILocalStorage
     {
         public async Task DeleteAsync(string path, string fileName)
             => await Task.Run(() => { File.Delete($"{path}\\{fileName}"); });
