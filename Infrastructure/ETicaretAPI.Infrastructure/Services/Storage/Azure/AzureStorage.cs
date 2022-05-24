@@ -1,4 +1,5 @@
 ﻿using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using ETicaretAPI.Application.Abstractions.Storage.Azure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +34,19 @@ namespace ETicaretAPI.Infrastructure.Services.Storage.Azure
             throw new NotImplementedException();
         }
 
-        public Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection formFiles)
+        public async Task<List<(string fileName, string pathOrContainerName)>> UploadAsync(string containerName, IFormFileCollection formFiles)
         {
-            throw new NotImplementedException();
+            _blobContainerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+            await _blobContainerClient.CreateIfNotExistsAsync();
+            await _blobContainerClient.SetAccessPolicyAsync(PublicAccessType.BlobContainer);
+            List<(string fileName, string pathOrContainerName)> datas = new List<(string fileName, string pathOrContainerName)>();
+            foreach (IFormFile file in formFiles)
+            {
+                BlobClient blobClient = _blobContainerClient.GetBlobClient(file.Name);
+                await blobClient.UploadAsync(file.OpenReadStream());
+                datas.Add((file.Name, containerName));
+            }
+            return datas;
         }
     }
 }
