@@ -146,7 +146,7 @@ namespace ETicaretAPI.API.Controllers
                 });
         }
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload()
+        public async Task<IActionResult> Upload(string id)
         {
             List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", Request.Form.Files);
             await _productImageFileWriteRepository.AddRangeAsync(
