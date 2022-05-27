@@ -140,13 +140,10 @@ namespace ETicaretAPI.Persistence.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ProductImageId")
+                    b.Property<Guid>("ProductImageFileId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("ProductImageFileId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("ProductId", "ProductImageId");
+                    b.HasKey("ProductId", "ProductImageFileId");
 
                     b.HasIndex("ProductImageFileId");
 
@@ -194,14 +191,16 @@ namespace ETicaretAPI.Persistence.Migrations
             modelBuilder.Entity("ETicaretAPI.Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("ETicaretAPI.Domain.Entities.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany("ImageProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ETicaretAPI.Domain.Entities.ProductImageFile", "ProductImageFile")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductImageFileId");
+                        .WithMany("ImageProducts")
+                        .HasForeignKey("ProductImageFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

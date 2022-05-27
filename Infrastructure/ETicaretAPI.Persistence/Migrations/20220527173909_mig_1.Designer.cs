@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ETicaretAPI.Persistence.Migrations
 {
     [DbContext(typeof(ETicaretAPIDbContext))]
-    [Migration("20220527171729_mig_8")]
-    partial class mig_8
+    [Migration("20220527173909_mig_1")]
+    partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -142,13 +142,10 @@ namespace ETicaretAPI.Persistence.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ProductImageId")
+                    b.Property<Guid>("ProductImageFileId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("ProductImageFileId")
-                        .HasColumnType("char(36)");
-
-                    b.HasKey("ProductId", "ProductImageId");
+                    b.HasKey("ProductId", "ProductImageFileId");
 
                     b.HasIndex("ProductImageFileId");
 
@@ -196,14 +193,16 @@ namespace ETicaretAPI.Persistence.Migrations
             modelBuilder.Entity("ETicaretAPI.Domain.Entities.ProductImage", b =>
                 {
                     b.HasOne("ETicaretAPI.Domain.Entities.Product", "Product")
-                        .WithMany("ProductImages")
+                        .WithMany("ImageProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ETicaretAPI.Domain.Entities.ProductImageFile", "ProductImageFile")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductImageFileId");
+                        .WithMany("ImageProducts")
+                        .HasForeignKey("ProductImageFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -9,7 +9,7 @@ namespace ETicaretAPI.Domain.Entities
     {
         public Product Product { get; set; }
         public Guid ProductId { get; set; }
-        public Guid ProductImageId { get; set; }
+        public Guid ProductImageFileId { get; set; }
         public ProductImageFile ProductImageFile { get; set; }
     }
 }
