@@ -148,14 +148,15 @@ namespace ETicaretAPI.API.Controllers
         [HttpPost("upload")]
         public async Task<IActionResult> Upload()
         {
-            var datas = await _storageService.UploadAsync("resources/product-images", Request.Form.Files);
-            await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile
-            {
-                FileName = d.fileName,
-                Path = d.pathOrContainerName,
-                Storage = "Local"
-            }).ToList());
-            await _productImageFileWriteRepository.SaveAsync();
+            //var datas = await _storageService.UploadAsync("resources/product-images", Request.Form.Files);
+            //await _productImageFileWriteRepository.AddRangeAsync(datas.Select(d => new ProductImageFile
+            //{
+            //    FileName = d.fileName,
+            //    Path = d.pathOrContainerName,
+            //    Storage = "Local"
+            //}).ToList());
+            //await _productImageFileWriteRepository.SaveAsync();
+            List<(string fileName,string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", Request.Form.Files);
             return Ok();
         }
     }
