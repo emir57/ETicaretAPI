@@ -6,6 +6,6 @@ namespace ETicaretAPI.Domain.Entities
 {
     public class ProductImageFile : File
     {
-        public Product Product { get; set; }
+        public ICollection<ProductImage> ProductImages { get; set; }
     }
 }

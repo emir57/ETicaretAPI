@@ -25,6 +25,8 @@ namespace ETicaretAPI.Persistence.Contexts
         {
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(x => new { x.ProductId, x.OrderId });
+            modelBuilder.Entity<ProductImage>()
+                .HasKey(x => new { x.ProductId, x.ProductImageId });
             base.OnModelCreating(modelBuilder);
         }
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
