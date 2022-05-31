@@ -7,6 +7,7 @@ using ETicaretAPI.Domain.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -166,6 +167,14 @@ namespace ETicaretAPI.API.Controllers
                 }).ToList());
             await _productImageFileWriteRepository.SaveAsync();
             return Ok();
+        }
+        [HttpGet("productimages")]
+        public async Task<IActionResult> GetProductImages(string id)
+        {
+            Product product = await _productReadRepository.Table
+                .Include(p => p.ImageProducts)
+                .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
+            
         }
     }
 }
