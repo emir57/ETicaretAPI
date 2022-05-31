@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ETicaretAPI.API.Controllers
@@ -171,6 +172,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpGet("productimages")]
         public async Task<IActionResult> GetProductImages(string id)
         {
+            Thread.Sleep(500);
             Product product = await _productReadRepository.Table
                 .Include(p => p.ImageProducts)
                 .ThenInclude(i => i.ProductImageFile)
