@@ -187,6 +187,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProductImage(string id, string imageId)
         {
+            Thread.Sleep(300);
             Product product = await _productReadRepository.Table
                 .Include(p => p.ImageProducts)
                 .ThenInclude(i => i.ProductImageFile)
