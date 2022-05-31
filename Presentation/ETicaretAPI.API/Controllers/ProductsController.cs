@@ -184,5 +184,10 @@ namespace ETicaretAPI.API.Controllers
                 p.ProductImageFile.FileName
             }));
         }
+        [HttpDelete("[action]/[productId]/[imageId]")]
+        public async Task<IActionResult> DeleteProductImage(string productId, string imageId)
+        {
+
+        }
     }
 }
