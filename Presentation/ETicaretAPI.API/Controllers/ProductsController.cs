@@ -177,6 +177,7 @@ namespace ETicaretAPI.API.Controllers
                 .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
             return Ok(product.ImageProducts.Select(p => new
             {
+                p.ProductImageFile.Id,
                 p.ProductImageFile.Path,
                 p.ProductImageFile.FileName
             }));
