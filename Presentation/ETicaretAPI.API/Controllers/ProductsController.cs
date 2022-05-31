@@ -173,6 +173,7 @@ namespace ETicaretAPI.API.Controllers
         {
             Product product = await _productReadRepository.Table
                 .Include(p => p.ImageProducts)
+                .ThenInclude(i => i.ProductImageFile)
                 .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
             return Ok(product.ImageProducts.Select(p => new
             {
