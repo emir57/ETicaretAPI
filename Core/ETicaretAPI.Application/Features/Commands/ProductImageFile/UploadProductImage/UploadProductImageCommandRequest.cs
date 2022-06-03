@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProductImage
 {
-    public class UploadProductImageRequest : IRequest<UploadProductImageCommandResponse>
+    public class UploadProductImageCommandRequest : IRequest<UploadProductImageCommandResponse>
     {
     }
 }
