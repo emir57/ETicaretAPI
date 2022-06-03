@@ -113,7 +113,7 @@ namespace ETicaretAPI.API.Controllers
             return Ok();
         }
         [HttpGet("productimages")]
-        public async Task<IActionResult> GetProductImages(GetProductImagesQueryRequest getProductImagesQueryRequest)
+        public async Task<IActionResult> GetProductImages([FromQuery]GetProductImagesQueryRequest getProductImagesQueryRequest)
         {
             Thread.Sleep(500);
             var getProductImagesQueryResponse = await _mediator.Send(getProductImagesQueryRequest);

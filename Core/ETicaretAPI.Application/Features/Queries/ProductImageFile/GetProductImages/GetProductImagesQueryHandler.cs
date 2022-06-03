@@ -13,6 +13,12 @@ namespace ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductIm
     public class GetProductImagesQueryHandler : IRequestHandler<GetProductImagesQueryRequest, GetProductImagesQueryResponse>
     {
         private readonly IProductReadRepository _productReadRepository;
+
+        public GetProductImagesQueryHandler(IProductReadRepository productReadRepository)
+        {
+            _productReadRepository = productReadRepository;
+        }
+
         public async Task<GetProductImagesQueryResponse> Handle(GetProductImagesQueryRequest request, CancellationToken cancellationToken)
         {
             ETicaretAPI.Domain.Entities.Product product = await _productReadRepository.Table
