@@ -27,7 +27,7 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.RemoveProdu
                 .Include(p => p.ImageProducts)
                 .ThenInclude(i => i.ProductImageFile)
                 .FirstOrDefaultAsync(p => p.Id == Guid.Parse(request.Id));
-            ETicaretAPI.Domain.Entities.ProductImage productImage = product.ImageProducts.FirstOrDefault(p => p.ProductImageFileId == Guid.Parse(imageId));
+            ETicaretAPI.Domain.Entities.ProductImage productImage = product.ImageProducts.FirstOrDefault(p => p.ProductImageFileId == Guid.Parse(request.ImageId));
             product.ImageProducts.Remove(productImage);
             await _productWriteRepository.SaveAsync();
             return new RemoveProductImageFileCommandResponse();
