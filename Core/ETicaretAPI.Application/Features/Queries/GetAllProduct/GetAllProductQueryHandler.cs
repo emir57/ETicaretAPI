@@ -31,7 +31,8 @@ namespace ETicaretAPI.Application.Features.Queries.GetAllProduct
             }).Skip(request.Pagination.Page * request.Pagination.Size).Take(request.Pagination.Size).ToListAsync();
             return new GetAllProductQueryResponse
             {
-                TotalCount = totalCount
+                TotalCount = totalCount,
+                Products = products
             };
         }
     }
