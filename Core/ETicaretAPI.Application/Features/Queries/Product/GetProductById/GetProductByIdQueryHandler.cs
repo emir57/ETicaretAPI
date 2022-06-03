@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Product.Queries.GetProductById
+namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
 {
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQueryRequest, GetProductByIdQueryResponse>
     {
