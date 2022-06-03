@@ -120,7 +120,7 @@ namespace ETicaretAPI.API.Controllers
             return Ok(getProductImagesQueryResponse);
         }
         [HttpDelete("[action]")]
-        public async Task<IActionResult> DeleteProductImage(RemoveProductImageFileCommandRequest removeProductImageFileCommandRequest)
+        public async Task<IActionResult> DeleteProductImage([FromQuery] RemoveProductImageFileCommandRequest removeProductImageFileCommandRequest)
         {
             var removeProductImageFileCommandResponse = await _mediator.Send(removeProductImageFileCommandRequest);
             return Ok(removeProductImageFileCommandResponse);
