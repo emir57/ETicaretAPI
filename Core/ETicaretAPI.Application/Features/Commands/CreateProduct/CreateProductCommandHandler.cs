@@ -27,10 +27,7 @@ namespace ETicaretAPI.Application.Features.Commands.CreateProduct
                 Price = request.Price
             });
             await _productWriteRepository.SaveAsync();
-            return new CreateProductCommandResponse
-            {
-
-            };
+            return new CreateProductCommandResponse();
         }
     }
 }
