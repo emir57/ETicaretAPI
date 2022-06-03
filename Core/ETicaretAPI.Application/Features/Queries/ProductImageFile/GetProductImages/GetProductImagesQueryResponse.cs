@@ -6,5 +6,6 @@ namespace ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductIm
 {
     public class GetProductImagesQueryResponse
     {
+        public object Images { get; set; }
     }
 }
