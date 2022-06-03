@@ -11,15 +11,22 @@ namespace ETicaretAPI.Application.Features.Commands.Product.UpdateProduct
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest, UpdateProductCommandResponse>
     {
         private readonly IProductWriteRepository _productWriteRepository;
+        private readonly IProductReadRepository _productReadRepository;
 
-        public UpdateProductCommandHandler(IProductWriteRepository productWriteRepository)
+        public UpdateProductCommandHandler(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository)
         {
             _productWriteRepository = productWriteRepository;
+            _productReadRepository = productReadRepository;
         }
 
-        public Task<UpdateProductCommandResponse> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<UpdateProductCommandResponse> Handle(UpdateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var product = await _productReadRepository.GetByIdAsync(request.Id);
+            product.Stock = request.Stock;
+            product.Name = request.Name;
+            product.Price = request.Price;
+            await _productWriteRepository.SaveAsync();
+            return new UpdateProductCommandResponse();
         }
     }
 }
