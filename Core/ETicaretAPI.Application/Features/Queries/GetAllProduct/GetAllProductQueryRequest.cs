@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Features.Queries.GetAllProduct
 {
-    public class GetAllProductQueryRequest : IRequest
+    public class GetAllProductQueryRequest : IRequest<GetAllProductQueryResponse>
     {
         public Pagination Pagination { get; set; }
     }
