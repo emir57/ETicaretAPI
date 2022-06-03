@@ -22,7 +22,9 @@ namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
             var product = await _productReadRepository.GetByIdAsync(request.Id, tracking: false);
             return new GetByIdProductQueryResponse
             {
-                Product = product
+                Name = product.Name,
+                Price = product.Price,
+                Stock = product.Stock
             };
         }
     }
