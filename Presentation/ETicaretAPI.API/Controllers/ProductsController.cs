@@ -104,17 +104,9 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post(VM_Create_Product model)
+        public async Task<IActionResult> Post()
         {
-            //TODO: refactoring
-            await _productWriteRepository.AddAsync(new Product
-            {
-                Name = model.Name,
-                Stock = model.Stock,
-                Price = model.Price
-            });
-            await _productWriteRepository.SaveAsync();
-            return StatusCode((int)HttpStatusCode.Created);
+            
         }
 
         [HttpPut("update")]
