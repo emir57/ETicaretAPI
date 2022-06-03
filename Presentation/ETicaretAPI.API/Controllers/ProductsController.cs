@@ -2,6 +2,7 @@
 using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
 using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
 using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
+using ETicaretAPI.Application.Features.Commands.ProductImageFile.RemoveProductImageFile;
 using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetProductById;
 using ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductImages;
@@ -113,17 +114,16 @@ namespace ETicaretAPI.API.Controllers
             return Ok();
         }
         [HttpGet("productimages")]
-        public async Task<IActionResult> GetProductImages([FromQuery]GetProductImagesQueryRequest getProductImagesQueryRequest)
+        public async Task<IActionResult> GetProductImages([FromQuery] GetProductImagesQueryRequest getProductImagesQueryRequest)
         {
             var getProductImagesQueryResponse = await _mediator.Send(getProductImagesQueryRequest);
             return Ok(getProductImagesQueryResponse);
         }
         [HttpDelete("[action]")]
-        public async Task<IActionResult> DeleteProductImage(string id, string imageId)
+        public async Task<IActionResult> DeleteProductImage(RemoveProductImageFileCommandRequest removeProductImageFileCommandRequest)
         {
-            Thread.Sleep(300);
-            
-            return Ok();
+            var removeProductImageFileCommandResponse = await _mediator.Send(removeProductImageFileCommandRequest);
+            return Ok(removeProductImageFileCommandResponse);
         }
     }
 }
