@@ -4,6 +4,7 @@ using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
 using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetProductById;
+using ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductImages;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParameters;
 using ETicaretAPI.Application.Services;
@@ -112,10 +113,11 @@ namespace ETicaretAPI.API.Controllers
             return Ok();
         }
         [HttpGet("productimages")]
-        public async Task<IActionResult> GetProductImages(string id)
+        public async Task<IActionResult> GetProductImages(GetProductImagesQueryRequest getProductImagesQueryRequest)
         {
             Thread.Sleep(500);
-            
+            var getProductImagesQueryResponse = await _mediator.Send(getProductImagesQueryRequest);
+            return Ok(getProductImagesQueryResponse);
         }
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProductImage(string id, string imageId)
