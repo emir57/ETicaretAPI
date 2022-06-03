@@ -80,8 +80,8 @@ namespace ETicaretAPI.API.Controllers
         [HttpPut("update")]
         public async Task<IActionResult> Put(UpdateProductCommandRequest updateProductCommandRequest)
         {
-            
-            return Ok();
+            var updateProductCommandResponse = await _mediator.Send(updateProductCommandRequest);
+            return Ok(updateProductCommandResponse);
         }
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(RemoveProductCommandRequest removeProductCommandRequest)
