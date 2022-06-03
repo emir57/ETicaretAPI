@@ -6,6 +6,8 @@ namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
 {
     public class GetByIdProductQueryResponse
     {
-        public ETicaretAPI.Domain.Entities.Product Product { get; set; }
+        public string Name { get; set; }
+        public int Stock { get; set; }
+        public float Price { get; set; }
     }
 }
