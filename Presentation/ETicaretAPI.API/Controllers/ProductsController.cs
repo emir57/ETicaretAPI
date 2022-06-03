@@ -1,4 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
+using ETicaretAPI.Application.Features.Commands.CreateProduct;
 using ETicaretAPI.Application.Features.Queries.GetAllProduct;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParameters;
@@ -104,9 +105,10 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost("add")]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post(CreateProductCommandRequest createProductCommandRequest)
         {
-            
+            var createProductResponse = await _mediator.Send(createProductCommandRequest);
+            return Ok(createProductResponse);
         }
 
         [HttpPut("update")]
