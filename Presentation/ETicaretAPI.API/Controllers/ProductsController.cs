@@ -1,6 +1,7 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
 using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
 using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
+using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetProductById;
 using ETicaretAPI.Application.Repositories;
@@ -77,13 +78,9 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPut("update")]
-        public async Task<IActionResult> Put(VM_Update_Product model)
+        public async Task<IActionResult> Put(UpdateProductCommandRequest updateProductCommandRequest)
         {
-            Product product = await _productReadRepository.GetByIdAsync(model.Id);
-            product.Stock = model.Stock;
-            product.Name = model.Name;
-            product.Price = model.Price;
-            await _productWriteRepository.SaveAsync();
+            
             return Ok();
         }
         [HttpDelete("delete")]
