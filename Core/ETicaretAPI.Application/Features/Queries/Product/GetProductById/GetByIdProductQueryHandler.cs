@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
 {
-    public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQueryRequest, GetProductByIdQueryResponse>
+    public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQueryRequest, GetByIdProductQueryResponse>
     {
         private readonly IProductReadRepository _productReadRepository;
 
-        public GetProductByIdQueryHandler(IProductReadRepository productReadRepository)
+        public GetByIdProductQueryHandler(IProductReadRepository productReadRepository)
         {
             _productReadRepository = productReadRepository;
         }
 
-        public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetByIdProductQueryResponse> Handle(GetByIdProductQueryRequest request, CancellationToken cancellationToken)
         {
             var product = await _productReadRepository.GetByIdAsync(request.Id, tracking: false);
-            return new GetProductByIdQueryResponse
+            return new GetByIdProductQueryResponse
             {
                 Product = product
             };

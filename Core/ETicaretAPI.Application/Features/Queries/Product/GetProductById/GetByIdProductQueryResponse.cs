@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
 {
-    public class GetProductByIdQueryResponse
+    public class GetByIdProductQueryResponse
     {
         public ETicaretAPI.Domain.Entities.Product Product { get; set; }
     }

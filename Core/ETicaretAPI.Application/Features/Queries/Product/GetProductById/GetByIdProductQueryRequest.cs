@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETicaretAPI.Application.Features.Queries.Product.GetProductById
 {
-    public class GetProductByIdQueryRequest : IRequest<GetProductByIdQueryResponse>
+    public class GetByIdProductQueryRequest : IRequest<GetByIdProductQueryResponse>
     {
         public string Id { get; set; }
     }
