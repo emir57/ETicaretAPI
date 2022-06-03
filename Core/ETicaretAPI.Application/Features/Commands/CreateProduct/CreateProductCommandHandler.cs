@@ -22,9 +22,9 @@ namespace ETicaretAPI.Application.Features.Commands.CreateProduct
         {
             await _productWriteRepository.AddAsync(new Product
             {
-                Name = request.Model.Name,
-                Stock = request.Model.Stock,
-                Price = request.Model.Price
+                Name = request.Name,
+                Stock = request.Stock,
+                Price = request.Price
             });
             await _productWriteRepository.SaveAsync();
             return new CreateProductCommandResponse
