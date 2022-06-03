@@ -90,11 +90,11 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
         }
         [HttpGet("getall")]
-        public async Task<IActionResult> GetAll(GetAllProductQueryRequest getAllProductQueryRequest)
+        public async Task<IActionResult> GetAll([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
         {
             var getAllProductQueryResponse = await _mediator.Send(getAllProductQueryRequest);
             return Ok(getAllProductQueryResponse);
-            
+
         }
         [HttpGet("getbyid")]
         public async Task<IActionResult> GetById(string id)
