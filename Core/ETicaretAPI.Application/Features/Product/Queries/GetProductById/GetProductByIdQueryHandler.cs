@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ETicaretAPI.Application.Repositories;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,17 @@ namespace ETicaretAPI.Application.Features.Product.Queries.GetProductById
 {
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQueryRequest, GetProductByIdQueryResponse>
     {
-        public Task<GetProductByIdQueryResponse> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
+        private readonly IProductReadRepository _productReadRepository;
+
+        public GetProductByIdQueryHandler(IProductReadRepository productReadRepository)
         {
-            throw new NotImplementedException();
+            _productReadRepository = productReadRepository;
+        }
+
+        public async Task<GetProductByIdQueryResponse> Handle(GetProductByIdQueryRequest request, CancellationToken cancellationToken)
+        {
+            var response = await _productReadRepository.GetByIdAsync(request.Id, tracking: false);
+            return response as GetProductByIdQueryResponse;
         }
     }
 }
