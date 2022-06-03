@@ -1,5 +1,4 @@
 ﻿using ETicaretAPI.Application.Repositories;
-using ETicaretAPI.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace ETicaretAPI.Application.Features.Product.Commands.CreateProduct
 
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productWriteRepository.AddAsync(new Product
+            await _productWriteRepository.AddAsync(new ETicaretAPI.Domain.Entities.Product
             {
                 Name = request.Name,
                 Stock = request.Stock,
