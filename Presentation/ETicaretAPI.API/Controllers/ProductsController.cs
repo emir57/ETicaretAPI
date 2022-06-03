@@ -1,6 +1,7 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
 using ETicaretAPI.Application.Features.Product.Commands.CreateProduct;
 using ETicaretAPI.Application.Features.Product.Queries.GetAllProduct;
+using ETicaretAPI.Application.Features.Product.Queries.GetProductById;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Application.RequestParameters;
 using ETicaretAPI.Application.Services;
@@ -61,10 +62,10 @@ namespace ETicaretAPI.API.Controllers
 
         }
         [HttpGet("getbyid")]
-        public async Task<IActionResult> GetById(string id)
+        public async Task<IActionResult> GetById([FromQuery] GetProductByIdQueryRequest getProductByIdQueryRequest)
         {
-            Product product = 
-            return Ok(product);
+            var getProductByIdQueryResponse = await _mediator.Send(getProductByIdQueryRequest);
+            return Ok(getProductByIdQueryResponse);
         }
 
         [HttpPost("add")]
