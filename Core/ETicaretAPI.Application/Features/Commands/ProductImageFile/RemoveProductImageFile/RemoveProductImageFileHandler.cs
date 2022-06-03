@@ -1,6 +1,9 @@
-﻿using MediatR;
+﻿using ETicaretAPI.Application.Repositories;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -9,9 +12,25 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.RemoveProdu
 {
     public class RemoveProductImageFileHandler : IRequestHandler<RemoveProductImageFileCommandRequest, RemoveProductImageFileCommandResponse>
     {
-        public Task<RemoveProductImageFileCommandResponse> Handle(RemoveProductImageFileCommandRequest request, CancellationToken cancellationToken)
+        private readonly IProductReadRepository _productReadRepository;
+        private readonly IProductWriteRepository _productWriteRepository;
+
+        public RemoveProductImageFileHandler(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
         {
-            throw new NotImplementedException();
+            _productReadRepository = productReadRepository;
+            _productWriteRepository = productWriteRepository;
+        }
+
+        public async Task<RemoveProductImageFileCommandResponse> Handle(RemoveProductImageFileCommandRequest request, CancellationToken cancellationToken)
+        {
+            ETicaretAPI.Domain.Entities.Product product = await _productReadRepository.Table
+                .Include(p => p.ImageProducts)
+                .ThenInclude(i => i.ProductImageFile)
+                .FirstOrDefaultAsync(p => p.Id == Guid.Parse(request.Id));
+            ETicaretAPI.Domain.Entities.ProductImage productImage = product.ImageProducts.FirstOrDefault(p => p.ProductImageFileId == Guid.Parse(imageId));
+            product.ImageProducts.Remove(productImage);
+            await _productWriteRepository.SaveAsync();
+            return new RemoveProductImageFileCommandResponse();
         }
     }
 }
