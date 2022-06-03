@@ -1,5 +1,6 @@
 ﻿using ETicaretAPI.Application.Abstractions.Storage;
 using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
+using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetProductById;
 using ETicaretAPI.Application.Repositories;
@@ -53,7 +54,7 @@ namespace ETicaretAPI.API.Controllers
             _storageService = storageService;
             _mediator = mediator;
         }
-        
+
         [HttpGet("getall")]
         public async Task<IActionResult> GetAll([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
         {
@@ -86,14 +87,10 @@ namespace ETicaretAPI.API.Controllers
             return Ok();
         }
         [HttpDelete("delete")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(RemoveProductCommandRequest removeProductCommandRequest)
         {
-            
-            return Ok(
-                new
-                {
-                    message = "Silme işlemi başarılı."
-                });
+            var removeProductCommandResponse = await _mediator.Send(removeProductCommandRequest);
+            return Ok(removeProductCommandResponse);
         }
         [HttpPost("upload")]
         public async Task<IActionResult> Upload(string id)
