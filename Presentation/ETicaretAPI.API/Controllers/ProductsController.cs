@@ -115,16 +115,7 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> GetProductImages(string id)
         {
             Thread.Sleep(500);
-            Product product = await _productReadRepository.Table
-                .Include(p => p.ImageProducts)
-                .ThenInclude(i => i.ProductImageFile)
-                .FirstOrDefaultAsync(p => p.Id == Guid.Parse(id));
-            return Ok(product.ImageProducts.Select(p => new
-            {
-                p.ProductImageFile.Id,
-                p.ProductImageFile.Path,
-                p.ProductImageFile.FileName
-            }));
+            
         }
         [HttpDelete("[action]")]
         public async Task<IActionResult> DeleteProductImage(string id, string imageId)
