@@ -7,5 +7,6 @@ namespace ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductIm
 {
     public class GetProductImagesQueryRequest : IRequest<GetProductImagesQueryResponse>
     {
+        public string Id { get; set; }
     }
 }
