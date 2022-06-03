@@ -17,9 +17,10 @@ namespace ETicaretAPI.Application.Features.Commands.Product.RemoveProduct
             _productWriteRepository = productWriteRepository;
         }
 
-        public Task<RemoveProductCommandResponse> Handle(RemoveProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<RemoveProductCommandResponse> Handle(RemoveProductCommandRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await _productWriteRepository.RemoveAsync(request.Id);
+            await _productWriteRepository.SaveAsync();
         }
     }
 }

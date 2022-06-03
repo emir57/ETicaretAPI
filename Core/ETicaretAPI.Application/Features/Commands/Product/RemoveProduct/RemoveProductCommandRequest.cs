@@ -7,6 +7,6 @@ namespace ETicaretAPI.Application.Features.Commands.Product.RemoveProduct
 {
     public class RemoveProductCommandRequest : IRequest<RemoveProductCommandResponse>
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     }
 }
