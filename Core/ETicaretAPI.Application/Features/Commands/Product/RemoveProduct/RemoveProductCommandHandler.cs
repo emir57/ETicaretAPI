@@ -21,6 +21,7 @@ namespace ETicaretAPI.Application.Features.Commands.Product.RemoveProduct
         {
             await _productWriteRepository.RemoveAsync(request.Id);
             await _productWriteRepository.SaveAsync();
+            return new RemoveProductCommandResponse();
         }
     }
 }
