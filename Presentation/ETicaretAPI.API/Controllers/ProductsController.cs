@@ -108,7 +108,7 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Post(CreateProductCommandRequest createProductCommandRequest)
         {
             var createProductResponse = await _mediator.Send(createProductCommandRequest);
-            return Ok(createProductResponse);
+            return StatusCode((int)HttpStatusCode.Created);
         }
 
         [HttpPut("update")]
