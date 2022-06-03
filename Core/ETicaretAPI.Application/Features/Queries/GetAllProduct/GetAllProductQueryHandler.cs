@@ -28,7 +28,7 @@ namespace ETicaretAPI.Application.Features.Queries.GetAllProduct
                 x.Price,
                 x.CreatedDate,
                 x.UpdatedDate
-            }).Skip(request.Pagination.Page * request.Pagination.Size).Take(request.Pagination.Size).ToListAsync();
+            }).Skip(request.Page * request.Size).Take(request.Size).ToListAsync();
             return new GetAllProductQueryResponse
             {
                 TotalCount = totalCount,
