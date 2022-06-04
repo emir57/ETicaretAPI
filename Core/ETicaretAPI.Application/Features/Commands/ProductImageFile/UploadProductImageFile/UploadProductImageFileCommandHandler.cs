@@ -28,7 +28,7 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProdu
         {
             List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", Request.Form.Files);
 
-            Domain.Entities.Product product = await _productReadRepository.GetByIdAsync(id);
+            Domain.Entities.Product product = await _productReadRepository.GetByIdAsync(request.Id);
 
             await _productImageFileWriteRepository.AddRangeAsync(
                 result.Select(r => new Domain.Entities.ProductImageFile
