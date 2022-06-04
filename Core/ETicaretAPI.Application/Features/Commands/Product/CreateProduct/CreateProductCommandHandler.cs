@@ -19,7 +19,7 @@ namespace ETicaretAPI.Application.Features.Commands.Product.CreateProduct
 
         public async Task<CreateProductCommandResponse> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
-            await _productWriteRepository.AddAsync(new ETicaretAPI.Domain.Entities.Product
+            await _productWriteRepository.AddAsync(new Domain.Entities.Product
             {
                 Name = request.Name,
                 Stock = request.Stock,
