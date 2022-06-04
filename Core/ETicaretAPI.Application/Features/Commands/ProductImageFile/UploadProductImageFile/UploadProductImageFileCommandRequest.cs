@@ -9,5 +9,6 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProdu
     public class UploadProductImageFileCommandRequest : IRequest<UploadProductImageFileCommandResponse>
     {
         public string Id { get; set; }
+        public IFormCollection IFormCollection { get; set; }
     }
 }
