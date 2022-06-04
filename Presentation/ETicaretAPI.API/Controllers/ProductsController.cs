@@ -3,6 +3,7 @@ using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
 using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
 using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
 using ETicaretAPI.Application.Features.Commands.ProductImageFile.RemoveProductImageFile;
+using ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProductImageFile;
 using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetProductById;
 using ETicaretAPI.Application.Features.Queries.ProductImageFile.GetProductImages;
@@ -92,25 +93,10 @@ namespace ETicaretAPI.API.Controllers
             return Ok(removeProductCommandResponse);
         }
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload(string id)
+        public async Task<IActionResult> Upload([FromQuery,FromBody] UploadProductImageFileCommandRequest
+            uploadProductImageFileCommandRequest)
         {
-            List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", Request.Form.Files);
-
-            Product product = await _productReadRepository.GetByIdAsync(id);
-
-            await _productImageFileWriteRepository.AddRangeAsync(
-                result.Select(r => new ProductImageFile
-                {
-                    FileName = r.fileName,
-                    Path = r.pathOrContainerName,
-                    Storage = _storageService.StorageName,
-                    ImageProducts = new List<ProductImage> { new ProductImage{
-                        Product = product,
-                        ProductImageFile = new ProductImageFile
-                                        {FileName=r.fileName,Path=r.pathOrContainerName,Storage="Local"}
-                    } }
-                }).ToList());
-            await _productImageFileWriteRepository.SaveAsync();
+            
             return Ok();
         }
         [HttpGet("productimages")]
