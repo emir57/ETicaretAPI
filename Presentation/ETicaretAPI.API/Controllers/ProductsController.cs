@@ -93,10 +93,10 @@ namespace ETicaretAPI.API.Controllers
             return Ok(removeProductCommandResponse);
         }
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload([FromQuery,FromBody] UploadProductImageFileCommandRequest
+        public async Task<IActionResult> Upload([FromQuery,FromForm] UploadProductImageFileCommandRequest
             uploadProductImageFileCommandRequest)
         {
-            
+
             return Ok();
         }
         [HttpGet("productimages")]

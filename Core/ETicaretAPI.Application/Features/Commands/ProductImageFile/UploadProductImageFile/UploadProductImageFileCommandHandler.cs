@@ -26,7 +26,7 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProdu
 
         public async Task<UploadProductImageFileCommandResponse> Handle(UploadProductImageFileCommandRequest request, CancellationToken cancellationToken)
         {
-            List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", request.FormCollection);
+            List<(string fileName, string pathOrContainerName)> result = await _storageService.UploadAsync("photo-images", request.Files.Files);
 
             Domain.Entities.Product product = await _productReadRepository.GetByIdAsync(request.Id);
 
