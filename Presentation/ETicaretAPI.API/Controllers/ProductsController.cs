@@ -96,8 +96,8 @@ namespace ETicaretAPI.API.Controllers
         public async Task<IActionResult> Upload([FromQuery,FromForm] UploadProductImageFileCommandRequest
             uploadProductImageFileCommandRequest)
         {
-
-            return Ok();
+            var uploadProductImageFileResponse = await _mediator.Send(uploadProductImageFileCommandRequest);
+            return Ok(uploadProductImageFileResponse);
         }
         [HttpGet("productimages")]
         public async Task<IActionResult> GetProductImages([FromQuery] GetProductImagesQueryRequest getProductImagesQueryRequest)
