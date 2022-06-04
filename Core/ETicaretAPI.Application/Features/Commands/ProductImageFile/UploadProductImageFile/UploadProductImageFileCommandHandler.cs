@@ -43,7 +43,7 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.UploadProdu
                     } }
                 }).ToList());
             await _productImageFileWriteRepository.SaveAsync();
-            return Ok();
+            return new UploadProductImageFileCommandResponse();
         }
     }
 }
