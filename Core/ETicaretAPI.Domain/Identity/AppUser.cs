@@ -7,5 +7,6 @@ namespace ETicaretAPI.Domain.Identity
 {
     public class AppUser : IdentityUser
     {
+        public string NameSurname { get; set; }
     }
 }
