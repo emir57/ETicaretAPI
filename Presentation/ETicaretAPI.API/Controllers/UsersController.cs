@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ETicaretAPI.Application.Features.Commands.AppUser.CreateUser;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace ETicaretAPI.API.Controllers
             _mediator = mediator;
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(CreateUserCommandRequest createUserCommandRequest)
         {
             return Ok();
         }
