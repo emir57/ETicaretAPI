@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,9 +10,14 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommandRequest, CreateUserCommandResponse>
     {
-        public Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
+        private readonly UserManager<Domain.Identity.AppUser> _userManager;
+        public CreateUserCommandHandler(UserManager<Domain.Identity.AppUser> userManager)
         {
-            throw new NotImplementedException();
+            _userManager = userManager;
+        }
+        public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
+        {
+            
         }
     }
 }
