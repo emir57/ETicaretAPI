@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ETicaretAPI.Application.Features.Commands.AppUser.CreateUser
 {
-    public class CreateUserCommandRequest
+    public class CreateUserCommandRequest : IRequest<CreateUserCommandResponse>
     {
     }
 }
