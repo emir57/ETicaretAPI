@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ETicaretAPI.Domain.Identity
 {
-    public class AppRole : IdentityRole
+    public class AppRole : IdentityRole<string>
     {
     }
 }
