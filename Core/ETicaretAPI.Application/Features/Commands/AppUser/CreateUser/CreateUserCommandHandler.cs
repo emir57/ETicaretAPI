@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,13 +26,16 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.CreateUser
                 NameSurname = request.FirstLastName
             };
             IdentityResult result = await _userManager.CreateAsync(user, request.Password);
+            CreateUserCommandResponse response =
+                new CreateUserCommandResponse { Succeeded = result.Succeeded };
             if (result.Succeeded)
-                return new CreateUserCommandResponse()
-                {
-                    Message = "Kullanıcı başarıyla oluşturulmuştur",
-                    Succeeded = true
-                };
-            throw new UserCreateFailedException();
+                response.Message = "Kullanıcı başarıyla oluşturulmuştur";
+            else
+            {
+                response.Message = String.Join("\n", result.Errors.Select(e => $"{e.Code} - {e.Description}"));
+            }
+            return response;
+            //throw new UserCreateFailedException();
         }
     }
 }
