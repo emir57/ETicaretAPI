@@ -18,7 +18,8 @@ namespace ETicaretAPI.API.Controllers
 
         public async Task<IActionResult> Create(CreateUserCommandRequest createUserCommandRequest)
         {
-            return Ok();
+            var createUserCommandResponse = await _mediator.Send(createUserCommandRequest);
+            return Ok(createUserCommandResponse);
         }
     }
 }
