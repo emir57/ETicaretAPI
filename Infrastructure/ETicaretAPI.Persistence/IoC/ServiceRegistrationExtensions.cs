@@ -20,8 +20,10 @@ namespace ETicaretAPI.Persistence.IoC
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(
                 GetConnectionString()
                 ));
-            services.AddIdentity<AppUser, AppRole>()
-                .AddEntityFrameworkStores<ETicaretAPIDbContext>();
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                //options.Password
+            }).AddEntityFrameworkStores<ETicaretAPIDbContext>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
 
