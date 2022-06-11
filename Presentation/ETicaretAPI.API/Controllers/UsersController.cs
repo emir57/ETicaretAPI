@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ETicaretAPI.API.Controllers
@@ -7,5 +8,10 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IMediator _mediator;
+        public UsersController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
     }
 }
