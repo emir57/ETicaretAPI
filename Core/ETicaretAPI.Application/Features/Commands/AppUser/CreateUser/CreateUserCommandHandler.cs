@@ -25,9 +25,16 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.CreateUser
             };
             IdentityResult result = await _userManager.CreateAsync(user, request.Password);
             if (result.Succeeded)
+                return new CreateUserCommandResponse()
+                {
+                    Message = "Kullanıcı başarıyla oluşturulmuştur",
+                    Succeeded = true
+                };
+            return new CreateUserCommandResponse
             {
-                return new CreateUserCommandResponse();
-            }
+                Succeeded = false,
+                Message = ""
+            };
 
         }
     }
