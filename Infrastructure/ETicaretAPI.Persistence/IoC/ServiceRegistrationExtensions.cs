@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistence.Repositories;
+using ETicaretAPI.Domain.Identity;
 
 namespace ETicaretAPI.Persistence.IoC
 {
@@ -19,6 +20,8 @@ namespace ETicaretAPI.Persistence.IoC
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseMySql(
                 GetConnectionString()
                 ));
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<ETicaretAPIDbContext>();
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
 
