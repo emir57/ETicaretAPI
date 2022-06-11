@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ETicaretAPI.API.Controllers
 {
@@ -12,6 +13,11 @@ namespace ETicaretAPI.API.Controllers
         public UsersController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            return Ok();
         }
     }
 }
