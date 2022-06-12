@@ -47,7 +47,7 @@ namespace ETicaretAPI.API
             services.AddApplicationServices();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
-            services.AddAuthentication()
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer("Admin", opt =>
                 {
                     opt.TokenValidationParameters = new TokenValidationParameters
@@ -91,7 +91,7 @@ namespace ETicaretAPI.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
