@@ -19,9 +19,19 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             _userManager = userManager;
         }
 
-        public Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
+        public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
+            if (user == null)
+                user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
+            var response = new LoginUserCommandResponse();
+            if (user == null)
+            {
+                response.Succeeded = false;
+                response.Message = "Kullanıcı adı veya şifre hatalı";
+            }
+
+            _signInManager.CheckPasswordSignInAsync()
         }
     }
 }
