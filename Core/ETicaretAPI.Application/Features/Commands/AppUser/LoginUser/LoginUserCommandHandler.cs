@@ -1,4 +1,6 @@
-﻿using ETicaretAPI.Application.Exceptions;
+﻿using ETicaretAPI.Application.Abstractions.Token;
+using ETicaretAPI.Application.Dtos;
+using ETicaretAPI.Application.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -13,11 +15,13 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
     {
         private readonly UserManager<Domain.Identity.AppUser> _userManager;
         private readonly SignInManager<Domain.Identity.AppUser> _signInManager;
+        private readonly ITokenHandler _tokenHandler;
 
-        public LoginUserCommandHandler(SignInManager<Domain.Identity.AppUser> signInManager, UserManager<Domain.Identity.AppUser> userManager)
+        public LoginUserCommandHandler(SignInManager<Domain.Identity.AppUser> signInManager, UserManager<Domain.Identity.AppUser> userManager, ITokenHandler tokenHandler)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _tokenHandler = tokenHandler;
         }
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
@@ -41,6 +45,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             if (result.Succeeded)
             {
                 response.Message = successMessage;
+                response.Token = _tokenHandler.CreateAccessToken();
                 //TODO: authorization
             }
             return response;
