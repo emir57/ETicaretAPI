@@ -6,6 +6,6 @@ namespace ETicaretAPI.Application.Abstractions.Token
 {
     public interface ITokenHandler
     {
-        void CreateAccessToken();
+        Dtos.Token CreateAccessToken();
     }
 }
