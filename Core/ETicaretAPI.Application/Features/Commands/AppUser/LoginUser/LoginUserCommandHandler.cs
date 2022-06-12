@@ -23,6 +23,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
             string errorMessage = "Kullanıcı adı veya şifre hatalı";
+            string successMessage = "Giriş başarılı";
             var user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
@@ -36,9 +37,9 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             response.Succeeded = result.Succeeded;
-            response.Message = errorMessage;
             if (result.Succeeded)
             {
+                response.Message = successMessage;
                 //TODO: authorization
             }
             return response;
