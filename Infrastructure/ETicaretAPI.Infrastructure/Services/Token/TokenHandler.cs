@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 
 namespace ETicaretAPI.Infrastructure.Services.Token
@@ -22,6 +23,17 @@ namespace ETicaretAPI.Infrastructure.Services.Token
         {
             Application.Dtos.Token token = new Application.Dtos.Token();
             SymmetricSecurityKey securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOptions.SecurityKey));
+            SigningCredentials credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            token.Expiration = DateTime.UtcNow.AddMinutes(_tokenOptions.AccessTokenExpiration);
+            JwtSecurityToken jwtSecurityToken = new JwtSecurityToken(
+                issuer: _tokenOptions.Issuer,
+                audience: _tokenOptions.Audience,
+                notBefore: DateTime.UtcNow,
+                signingCredentials: credentials,
+                expires: token.Expiration);
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            token.AccessToken = handler.WriteToken(jwtSecurityToken);
+            return token;
         }
     }
 }
