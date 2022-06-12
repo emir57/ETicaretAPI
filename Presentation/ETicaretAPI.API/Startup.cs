@@ -6,6 +6,7 @@ using ETicaretAPI.Infrastructure.Services.Storage.Azure;
 using ETicaretAPI.Infrastructure.Services.Storage.Local;
 using ETicaretAPI.Persistence.IoC;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,9 +15,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ETicaretAPI.API
@@ -37,10 +40,27 @@ namespace ETicaretAPI.API
                 .AddFluentValidation(configuration =>
                 configuration.RegisterValidatorsFromAssemblyContaining<CreateProductValidator>())
                 .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
-            
+
             services.AddPersistenceServices();
             services.AddInfrastructureServices();
             services.AddApplicationServices();
+
+            services.AddAuthentication()
+                .AddJwtBearer("Admin", opt =>
+                {
+                    opt.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+
+                        ValidAudience = "www.eticaret.com",
+                        ValidIssuer = "www.eyapi.com",
+                        IssuerSigningKey =
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdjhSAdxjýu123Sjkzx-90sa.xzcsad"))
+                    };
+                });
 
             services.AddStorage<LocalStorage>();
             //services.AddStorage<AzureStorage>();
