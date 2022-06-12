@@ -21,5 +21,10 @@ namespace ETicaretAPI.API.Controllers
             var createUserCommandResponse = await _mediator.Send(createUserCommandRequest);
             return Ok(createUserCommandResponse);
         }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login()
+        {
+            return Ok();
+        }
     }
 }
