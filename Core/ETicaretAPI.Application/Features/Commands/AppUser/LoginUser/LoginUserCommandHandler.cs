@@ -36,9 +36,10 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             {
                 response.Succeeded = false;
                 response.Message = errorMessage;
-                //throw new NotFoundUserException();
                 return response;
+                //throw new NotFoundUserException();
             }
+
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
             response.Succeeded = result.Succeeded;
             response.Message = errorMessage;
