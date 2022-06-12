@@ -58,7 +58,7 @@ namespace ETicaretAPI.API
                         ValidAudience = "www.eticaret.com",
                         ValidIssuer = "www.eyapi.com",
                         IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes("asdjhSAdxjýu123Sjkzx-90sa.xzcsad"))
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""))
                     };
                 });
 
