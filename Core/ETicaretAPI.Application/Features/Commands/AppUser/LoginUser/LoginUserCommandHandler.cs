@@ -34,22 +34,23 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             var response = new LoginUserCommandResponse();
             if (user == null)
             {
-                response.Succeeded = false;
-                response.Message = errorMessage;
-                return response;
+                return new LoginUserErrorCommandResponse()
+                    .AddMessage(errorMessage)
+                    .AddSucceeded(false);
                 //throw new NotFoundUserException();
             }
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
-            response.Succeeded = result.Succeeded;
-            response.Message = errorMessage;
             if (result.Succeeded)
             {
-                response.Message = successMessage;
-                response.Token = _tokenHandler.CreateAccessToken();
+                return new LoginUserSuccessCommandResponse()
+                    .AddToken(_tokenHandler.CreateAccessToken())
+                    .AddSucceeded(true);
                 //TODO: authorization
             }
-            return response;
+            return new LoginUserErrorCommandResponse()
+                    .AddMessage(errorMessage)
+                    .AddSucceeded(false); ;
         }
     }
 }
