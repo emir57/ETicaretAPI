@@ -1,5 +1,6 @@
 using ETicaretAPI.Application;
 using ETicaretAPI.Application.Validators.Products;
+using ETicaretAPI.Domain.Dtos;
 using ETicaretAPI.Infrastructure;
 using ETicaretAPI.Infrastructure.Filters;
 using ETicaretAPI.Infrastructure.Services.Storage.Azure;
@@ -45,6 +46,7 @@ namespace ETicaretAPI.API
             services.AddInfrastructureServices();
             services.AddApplicationServices();
 
+            var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
             services.AddAuthentication()
                 .AddJwtBearer("Admin", opt =>
                 {
@@ -55,10 +57,10 @@ namespace ETicaretAPI.API
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
 
-                        ValidAudience = "www.eticaret.com",
-                        ValidIssuer = "www.eyapi.com",
+                        ValidAudience = tokenOptions.Audience,
+                        ValidIssuer = tokenOptions.Issuer,
                         IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(""))
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
                     };
                 });
 
