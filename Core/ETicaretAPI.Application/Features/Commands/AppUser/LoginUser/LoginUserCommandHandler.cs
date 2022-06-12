@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using ETicaretAPI.Application.Exceptions;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
 
         public async Task<LoginUserCommandResponse> Handle(LoginUserCommandRequest request, CancellationToken cancellationToken)
         {
+            string errorMessage = "Kullanıcı adı veya şifre hatalı";
             var user = await _userManager.FindByNameAsync(request.UsernameOrEmail);
             if (user == null)
                 user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
@@ -28,10 +30,18 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             if (user == null)
             {
                 response.Succeeded = false;
-                response.Message = "Kullanıcı adı veya şifre hatalı";
+                response.Message = errorMessage;
+                //throw new NotFoundUserException();
             }
 
-            _signInManager.CheckPasswordSignInAsync()
+            var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
+            response.Succeeded = result.Succeeded;
+            response.Message = errorMessage;
+            if (result.Succeeded)
+            {
+                //TODO: authorization
+            }
+            return response;
         }
     }
 }
