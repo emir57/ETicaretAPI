@@ -41,11 +41,13 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin
               access_token={accessTokenResponseDto.AccessToken}");
 
             var validation = JsonSerializer.Deserialize<FacebookUserAccessTokenValidation>(userAccessTokenValidation);
-            if (validation.IsValid)
+            if (validation.Data.IsValid)
             {
                 string userInfoResponse = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/ne?
                     fields=email,name&access_token={request.AuthToken}");
+                var facebookUserInfoResponse = JsonSerializer.Deserialize<FacebookUserInfoResponse>(userInfoResponse);
             }
+            
 
             return new FacebookLoginCommandResponse
             {
