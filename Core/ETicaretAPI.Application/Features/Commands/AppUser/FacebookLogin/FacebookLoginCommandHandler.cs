@@ -1,9 +1,11 @@
 ﻿using ETicaretAPI.Application.Abstractions.Token;
+using ETicaretAPI.Application.Dtos.Facebook;
 using Google.Apis.Http;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,6 +34,11 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin
             ? client_id ={clientId}
             &client_secret ={appSecret}
             &grant_type = client_credentials");
+
+            var accessTokenResponseDto = JsonSerializer.Deserialize<FacebookAccessTokenResponse>(accessTokenResponse);
+            string userAccessTokenValidation = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/oauth/access_token/debug_token
+              ?input_token={request.AuthToken}&
+              access_token={accessTokenResponseDto.AccessToken}");
 
             return new FacebookLoginCommandResponse
             {
