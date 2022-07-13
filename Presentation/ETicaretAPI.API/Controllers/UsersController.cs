@@ -35,5 +35,10 @@ namespace ETicaretAPI.API.Controllers
             var googleLoginCommandResponse = await _mediator.Send(googleLoginCommandRequest);
             return Ok(googleLoginCommandResponse);
         }
+        [HttpPost("[action]")]
+        public async Task<IActionResult> FacebookLogin()
+        {
+            return Ok();
+        }
     }
 }
