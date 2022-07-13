@@ -40,6 +40,13 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin
               ?input_token={request.AuthToken}&
               access_token={accessTokenResponseDto.AccessToken}");
 
+            var validation = JsonSerializer.Deserialize<FacebookUserAccessTokenValidation>(userAccessTokenValidation);
+            if (validation.IsValid)
+            {
+                string userInfoResponse = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/ne?
+                    fields=email,name&access_token={request.AuthToken}");
+            }
+
             return new FacebookLoginCommandResponse
             {
 
