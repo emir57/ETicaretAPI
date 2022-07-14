@@ -28,12 +28,13 @@ namespace ETicaretAPI.Persistence.Services
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
             CreateUserResponse response =
                 new CreateUserResponse { Succeeded = result.Succeeded };
+
             if (result.Succeeded)
                 response.Message = "Kullanıcı başarıyla oluşturulmuştur";
             else
                 response.Message = String.Join("\n", result.Errors.Select(e => $"{e.Code} - {e.Description}"));
+            
             return response;
-
         }
     }
 }

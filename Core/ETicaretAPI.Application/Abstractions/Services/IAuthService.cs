@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ETicaretAPI.Application.Abstractions.Services.Authentication;
 
 namespace ETicaretAPI.Application.Abstractions.Services
 {
-    public interface IAuthService
+    public interface IAuthService : IInternalAuthentication, IExternalAuthentication
     {
+
     }
 }
