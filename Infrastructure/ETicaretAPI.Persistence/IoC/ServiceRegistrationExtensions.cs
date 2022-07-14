@@ -10,6 +10,9 @@ using System.IO;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistence.Repositories;
 using ETicaretAPI.Domain.Identity;
+using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Persistence.Services;
+using ETicaretAPI.Application.Abstractions.Services.Authentication;
 
 namespace ETicaretAPI.Persistence.IoC
 {
@@ -42,6 +45,9 @@ namespace ETicaretAPI.Persistence.IoC
             services.AddScoped<IInvoiceFileReadRepository, InvoiceFileReadRepository>();
             services.AddScoped<IInvoiceFileWriteRepository, InvoiceFileWriteRepository>();
 
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
 
 
             return services;
