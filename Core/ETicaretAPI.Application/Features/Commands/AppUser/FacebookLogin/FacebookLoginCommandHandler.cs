@@ -1,13 +1,5 @@
-﻿using ETicaretAPI.Application.Abstractions.Token;
-using ETicaretAPI.Application.Dtos;
-using ETicaretAPI.Application.Dtos.Facebook;
-using Google.Apis.Http;
+﻿using ETicaretAPI.Application.Abstractions.Services;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Net.Http;
-using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,25 +7,17 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin
 {
     public class FacebookLoginCommandHandler : IRequestHandler<FacebookLoginCommandRequest, FacebookLoginCommandResponse>
     {
-        private readonly UserManager<Domain.Identity.AppUser> _userManager;
-        private readonly ITokenHandler _tokenHandler;
-        private readonly HttpClient _httpClient;
-        private readonly IConfiguration _configuration;
+        private readonly IAuthService _authService;
 
-        public FacebookLoginCommandHandler(UserManager<Domain.Identity.AppUser> userManager, ITokenHandler tokenHandler, IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        public FacebookLoginCommandHandler(IAuthService authService)
         {
-            _userManager = userManager;
-            _tokenHandler = tokenHandler;
-            _httpClient = httpClientFactory.CreateHttpClient(new CreateHttpClientArgs { });
-            _configuration = configuration;
+            _authService = authService;
         }
 
         public async Task<FacebookLoginCommandResponse> Handle(FacebookLoginCommandRequest request, CancellationToken cancellationToken)
         {
-            
-
-            
-            throw new Exception("Invalid external authentication.");
+            var response = await _authService.FacebookLoginAsync(request.AuthToken);
+            return new FacebookLoginCommandResponse { Token = response };
         }
     }
 }

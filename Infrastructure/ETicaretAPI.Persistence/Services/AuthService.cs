@@ -43,6 +43,7 @@ namespace ETicaretAPI.Persistence.Services
               ?input_token={authToken}&
               access_token={accessTokenResponseDto.AccessToken}");
             var validation = JsonSerializer.Deserialize<FacebookUserAccessTokenValidation>(userAccessTokenValidation);
+
             if (validation.Data.IsValid)
             {
                 string userInfoResponse = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/ne?
@@ -57,7 +58,7 @@ namespace ETicaretAPI.Persistence.Services
                     appUser = await _userManager.FindByEmailAsync(userInfo.Email);
                     if (appUser == null)
                     {
-                        appUser = new Domain.Identity.AppUser
+                        appUser = new AppUser
                         {
                             Id = Guid.NewGuid().ToString(),
                             Email = userInfo.Email,
