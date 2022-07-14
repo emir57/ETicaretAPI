@@ -3,10 +3,8 @@ using ETicaretAPI.Application.Abstractions.Token;
 using ETicaretAPI.Application.Dtos;
 using ETicaretAPI.Application.Dtos.Facebook;
 using ETicaretAPI.Application.Exceptions;
-using ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin;
 using ETicaretAPI.Domain.Identity;
 using Google.Apis.Auth;
-using Google.Apis.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -25,10 +23,10 @@ namespace ETicaretAPI.Persistence.Services
         private ITokenHandler _tokenHandler;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public AuthService(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory, IConfiguration configuration, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
+        public AuthService(UserManager<AppUser> userManager, IConfiguration configuration, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
-            _httpClient = httpClientFactory.CreateHttpClient(new CreateHttpClientArgs { });
+            _httpClient = new HttpClient();
             _configuration = configuration;
             _tokenHandler = tokenHandler;
             _signInManager = signInManager;

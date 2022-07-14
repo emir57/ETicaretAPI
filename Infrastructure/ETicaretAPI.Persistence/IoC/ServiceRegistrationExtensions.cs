@@ -1,18 +1,14 @@
-﻿using ETicaretAPI.Persistence.Contexts;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.Abstractions.Services.Authentication;
+using ETicaretAPI.Application.Repositories;
+using ETicaretAPI.Domain.Identity;
+using ETicaretAPI.Persistence.Contexts;
+using ETicaretAPI.Persistence.Repositories;
+using ETicaretAPI.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System.IO;
-using ETicaretAPI.Application.Repositories;
-using ETicaretAPI.Persistence.Repositories;
-using ETicaretAPI.Domain.Identity;
-using ETicaretAPI.Application.Abstractions.Services;
-using ETicaretAPI.Persistence.Services;
-using ETicaretAPI.Application.Abstractions.Services.Authentication;
 
 namespace ETicaretAPI.Persistence.IoC
 {
@@ -48,6 +44,8 @@ namespace ETicaretAPI.Persistence.IoC
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IExternalAuthentication, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
+
+            services.AddScoped<IUserService, UserService>();
 
 
             return services;
