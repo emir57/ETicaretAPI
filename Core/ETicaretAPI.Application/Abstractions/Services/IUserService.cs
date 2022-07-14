@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ETicaretAPI.Application.Dtos.User;
+using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Abstractions.Services
 {
     public interface IUserService
     {
-
+        Task<CreateUserResponse> CreateAsync(CreateUser createUser);
     }
 }

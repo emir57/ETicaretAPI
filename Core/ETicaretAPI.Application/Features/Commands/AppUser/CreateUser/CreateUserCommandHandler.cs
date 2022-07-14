@@ -19,21 +19,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.CreateUser
         }
         public async Task<CreateUserCommandResponse> Handle(CreateUserCommandRequest request, CancellationToken cancellationToken)
         {
-            Domain.Identity.AppUser user = new Domain.Identity.AppUser
-            {
-                UserName = request.Username,
-                Email = request.Email,
-                NameSurname = request.FirstLastName
-            };
-            IdentityResult result = await _userManager.CreateAsync(user, request.Password);
-            CreateUserCommandResponse response =
-                new CreateUserCommandResponse { Succeeded = result.Succeeded };
-            if (result.Succeeded)
-                response.Message = "Kullanıcı başarıyla oluşturulmuştur";
-            else
-            {
-                response.Message = String.Join("\n", result.Errors.Select(e => $"{e.Code} - {e.Description}"));
-            }
+            
             return response;
             //throw new UserCreateFailedException();
         }
