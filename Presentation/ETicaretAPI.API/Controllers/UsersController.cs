@@ -13,34 +13,7 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IMediator _mediator;
-        public UsersController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateUserCommandRequest createUserCommandRequest)
-        {
-            var createUserCommandResponse = await _mediator.Send(createUserCommandRequest);
-            return Ok(createUserCommandResponse);
-        }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
-        {
-            var loginUserCommandResponse = await _mediator.Send(loginUserCommandRequest);
-            return Ok(loginUserCommandResponse);
-        }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GoogleLogin(GoogleLoginCommandRequest googleLoginCommandRequest)
-        {
-            var googleLoginCommandResponse = await _mediator.Send(googleLoginCommandRequest);
-            return Ok(googleLoginCommandResponse);
-        }
-        [HttpPost("[action]")]
-        public async Task<IActionResult> FacebookLogin(FacebookLoginCommandRequest facebookLoginCommandRequest)
-        {
-            var facebookLoginCommandResponse = await _mediator.Send(facebookLoginCommandRequest);
-            return Ok(facebookLoginCommandResponse);
-        }
+        
+        
     }
 }
