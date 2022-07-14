@@ -29,7 +29,7 @@ namespace ETicaretAPI.Persistence.Services
             _tokenHandler = tokenHandler;
         }
 
-        public async Task<Token> FacebookLoginAsync(string authToken)
+        public async Task<Token> FacebookLoginAsync(string authToken, int accessTokenLifeTime)
         {
             string clientId = _configuration.GetSection("FacebookAuthenticationKey").Value;
             string appSecret = _configuration.GetSection("FacebookAppSecret").Value;
@@ -79,7 +79,7 @@ namespace ETicaretAPI.Persistence.Services
             throw new Exception("Invalid external authentication.");
         }
 
-        public Task<Token> GoogleLoginAsync(string idToken)
+        public Task<Token> GoogleLoginAsync(string idToken, int accessTokenLifeTime)
         {
             throw new System.NotImplementedException();
         }
