@@ -2,6 +2,7 @@
 using ETicaretAPI.Application.Abstractions.Token;
 using ETicaretAPI.Application.Dtos;
 using ETicaretAPI.Application.Dtos.Facebook;
+using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Application.Features.Commands.AppUser.FacebookLogin;
 using ETicaretAPI.Domain.Identity;
 using Google.Apis.Auth;
@@ -22,13 +23,15 @@ namespace ETicaretAPI.Persistence.Services
         private HttpClient _httpClient;
         private IConfiguration _configuration;
         private ITokenHandler _tokenHandler;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public AuthService(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory, IConfiguration configuration, ITokenHandler tokenHandler)
+        public AuthService(UserManager<AppUser> userManager, IHttpClientFactory httpClientFactory, IConfiguration configuration, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _httpClient = httpClientFactory.CreateHttpClient(new CreateHttpClientArgs { });
             _configuration = configuration;
             _tokenHandler = tokenHandler;
+            _signInManager = signInManager;
         }
 
         private async Task<Token> createUserExternalAsync(AppUser appUser, UserLoginInfo info, string email, string name, int accessTokenLifeTime = 15)
@@ -103,9 +106,26 @@ namespace ETicaretAPI.Persistence.Services
             return await createUserExternalAsync(appUser, info, payload.Email, payload.Name);
         }
 
-        public Task LoginAsync()
+        public async Task<Token> LoginAsync(string usernameOrEmail, string password, int accessTokenLifeTime)
         {
-            throw new System.NotImplementedException();
+            string errorMessage = "Kullanıcı adı veya şifre hatalı";
+            var user = await _userManager.FindByNameAsync(usernameOrEmail);
+
+            if (user == null)
+                user = await _userManager.FindByEmailAsync(password);
+
+            if (user == null)
+            {
+                throw new NotFoundUserException();
+            }
+
+            var result = await _signInManager.CheckPasswordSignInAsync(user, password, false);
+            if (result.Succeeded)
+            {
+                Token token = _tokenHandler.CreateAccessToken();
+                return token;
+            }
+            throw new Exception(errorMessage);
         }
     }
 }
