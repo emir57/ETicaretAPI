@@ -64,15 +64,10 @@ namespace ETicaretAPI.Persistence.Services
         {
             string clientId = _configuration.GetSection("FacebookAuthenticationKey").Value;
             string appSecret = _configuration.GetSection("FacebookAppSecret").Value;
-            string accessTokenResponse = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/oauth/access_token
-            ? client_id ={clientId}
-            &client_secret ={appSecret}
-            &grant_type = client_credentials");
+            string accessTokenResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/oauth/access_token?client_id={clientId}&client_secret={appSecret}&grant_type=client_credentials");
 
             var accessTokenResponseDto = JsonSerializer.Deserialize<FacebookAccessTokenResponse>(accessTokenResponse);
-            string userAccessTokenValidation = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/oauth/access_token/debug_token
-              ?input_token={authToken}&
-              access_token={accessTokenResponseDto.AccessToken}");
+            string userAccessTokenValidation = await _httpClient.GetStringAsync($"https://graph.facebook.com/oauth/access_token/debug_token?input_token={authToken}&access_token={accessTokenResponseDto.AccessToken}");
             var validation = JsonSerializer.Deserialize<FacebookUserAccessTokenValidation>(userAccessTokenValidation);
 
             if (validation.Data.IsValid)
