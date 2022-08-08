@@ -60,7 +60,9 @@ namespace ETicaretAPI.API
                         ValidAudience = tokenOptions.Audience,
                         ValidIssuer = tokenOptions.Issuer,
                         IssuerSigningKey =
-                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey))
+                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenOptions.SecurityKey)),
+
+                        LifetimeValidator = (notBefore, expires, securityToken, validationParameters) => expires != null ? expires > DateTime.UtcNow : false
                     };
                 });
 
