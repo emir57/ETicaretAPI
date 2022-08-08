@@ -23,14 +23,16 @@ namespace ETicaretAPI.Persistence.Services
         private IConfiguration _configuration;
         private ITokenHandler _tokenHandler;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly IUserService _userService;
 
-        public AuthService(UserManager<AppUser> userManager, IConfiguration configuration, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager)
+        public AuthService(UserManager<AppUser> userManager, IConfiguration configuration, ITokenHandler tokenHandler, SignInManager<AppUser> signInManager, IUserService userService)
         {
             _userManager = userManager;
             _httpClient = new HttpClient();
             _configuration = configuration;
             _tokenHandler = tokenHandler;
             _signInManager = signInManager;
+            _userService = userService;
         }
 
         private async Task<Token> createUserExternalAsync(AppUser appUser, UserLoginInfo info, string email, string name, int accessTokenLifeTime = 15)
@@ -56,7 +58,7 @@ namespace ETicaretAPI.Persistence.Services
             {
                 await _userManager.AddLoginAsync(appUser, info);
                 Token token = _tokenHandler.CreateAccessToken();
-                
+                await _userService.UpdateRefreshToken(appUser, token.RefreshToken);
                 return token;
             }
             throw new Exception("Invalid external authentication.");
