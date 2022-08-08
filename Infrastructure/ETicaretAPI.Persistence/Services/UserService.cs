@@ -48,6 +48,7 @@ namespace ETicaretAPI.Persistence.Services
                 appUser.RefreshToken = refreshToken;
                 appUser.RefreshTokenDate = DateTime.UtcNow.AddMinutes(_tokenOptions.AccessTokenExpiration + 15);
                 await _userManager.UpdateAsync(appUser);
+                return;
             }
             throw new NotFoundUserException();
         }
