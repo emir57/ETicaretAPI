@@ -119,6 +119,7 @@ namespace ETicaretAPI.Persistence.Services
             if (result.Succeeded)
             {
                 Token token = _tokenHandler.CreateAccessToken();
+                await _userService.UpdateRefreshToken(user, token.RefreshToken);
                 return token;
             }
             throw new Exception(errorMessage);
