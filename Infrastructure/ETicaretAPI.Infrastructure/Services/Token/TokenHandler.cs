@@ -3,8 +3,8 @@ using ETicaretAPI.Application.Dtos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace ETicaretAPI.Infrastructure.Services.Token
@@ -33,7 +33,17 @@ namespace ETicaretAPI.Infrastructure.Services.Token
                 expires: token.Expiration);
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
             token.AccessToken = handler.WriteToken(jwtSecurityToken);
+
+            token.RefreshToken = CreateRefreshToken();
             return token;
+        }
+
+        public string CreateRefreshToken()
+        {
+            byte[] number = new byte[32];
+            using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+            randomNumberGenerator.GetBytes(number);
+            return Convert.ToBase64String(number);
         }
     }
 }
