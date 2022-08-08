@@ -6,10 +6,12 @@ using ETicaretAPI.Application.Exceptions;
 using ETicaretAPI.Domain.Identity;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -123,6 +125,18 @@ namespace ETicaretAPI.Persistence.Services
                 return token;
             }
             throw new Exception(errorMessage);
+        }
+
+        public async Task<Token> RefreshTokenLoginAsync(string refreshToken)
+        {
+            AppUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.RefreshToken == refreshToken);
+            if (user != null && user?.RefreshTokenDate > DateTime.UtcNow)
+            {
+                Token token = _tokenHandler.CreateAccessToken();
+                await _userService.UpdateRefreshToken(user, refreshToken);
+                return token;
+            }
+            throw new NotFoundUserException();
         }
     }
 }
