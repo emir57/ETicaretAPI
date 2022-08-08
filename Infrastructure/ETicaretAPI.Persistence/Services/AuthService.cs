@@ -56,6 +56,7 @@ namespace ETicaretAPI.Persistence.Services
             {
                 await _userManager.AddLoginAsync(appUser, info);
                 Token token = _tokenHandler.CreateAccessToken();
+                
                 return token;
             }
             throw new Exception("Invalid external authentication.");

@@ -6,5 +6,6 @@ namespace ETicaretAPI.Application.Abstractions.Services
     public interface IUserService
     {
         Task<CreateUserResponse> CreateAsync(CreateUser createUser);
+        Task UpdateRefreshToken(string refreshToken, string userId);
     }
 }
