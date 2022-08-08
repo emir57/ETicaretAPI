@@ -7,6 +7,7 @@ using ETicaretAPI.Domain.Identity;
 using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -67,13 +68,12 @@ namespace ETicaretAPI.Persistence.Services
             string accessTokenResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/oauth/access_token?client_id={clientId}&client_secret={appSecret}&grant_type=client_credentials");
 
             var accessTokenResponseDto = JsonSerializer.Deserialize<FacebookAccessTokenResponse>(accessTokenResponse);
-            string userAccessTokenValidation = await _httpClient.GetStringAsync($"https://graph.facebook.com/oauth/access_token/debug_token?input_token={authToken}&access_token={accessTokenResponseDto.AccessToken}");
+            string userAccessTokenValidation = await _httpClient.GetStringAsync($"https://graph.facebook.com/debug_token?input_token={authToken}&access_token={accessTokenResponseDto?.AccessToken}");
             var validation = JsonSerializer.Deserialize<FacebookUserAccessTokenValidation>(userAccessTokenValidation);
 
             if (validation.Data.IsValid)
             {
-                string userInfoResponse = await _httpClient.GetStringAsync(@$"https://graph.facebook.com/ne?
-                    fields=email,name&access_token={authToken}");
+                string userInfoResponse = await _httpClient.GetStringAsync($"https://graph.facebook.com/me?fields=email,name&access_token={authToken}");
                 var userInfo = JsonSerializer.Deserialize<FacebookUserInfoResponse>(userInfoResponse);
 
                 var info = new UserLoginInfo("FACEBOOK", validation.Data.UserId, "FACEBOOK");
