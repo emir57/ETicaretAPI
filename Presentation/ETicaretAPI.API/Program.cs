@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ namespace ETicaretAPI.API
     {
         public static void Main(string[] args)
         {
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -20,6 +23,14 @@ namespace ETicaretAPI.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    Logger log = new LoggerConfiguration()
+                        .WriteTo.Console()
+                        .WriteTo.File("logs/log.txt")
+                        .WriteTo.MySQL(
+                        "Server=localhost;Port=3306;Database=ETicaretAPIDb;Uid=root;Pwd=123456;",
+                        "logs")
+                        .CreateLogger();
+                    webBuilder.UseSerilog(log);
                     webBuilder.UseStartup<Startup>();
                 });
     }
