@@ -29,6 +29,7 @@ namespace ETicaretAPI.API
                         .WriteTo.MySQL(
                         "Server=localhost;Port=3306;Database=ETicaretAPIDb;Uid=root;Pwd=123456;",
                         "logs")
+                        .Enrich.FromLogContext()
                         .CreateLogger();
                     webBuilder.UseSerilog(log);
                     webBuilder.UseStartup<Startup>();
